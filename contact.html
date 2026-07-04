@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FFFFFF">
+<title>Contact — BWJ-ART</title>
+<meta name="description" content="Get in touch with BWJ-ART for commissions, gallery inquiries, and press.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="texture-bg"></div>
+
+<header class="topbar">
+  <a href="index.html" class="logo"><span class="dot"></span>BWJ-ART</a>
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-overlay"></div>
+<nav class="nav-panel">
+  <div class="nav-index">Index / 01—04</div>
+  <ul class="nav-links">
+    <li><a href="index.html"><span class="num">01</span>Home</a></li>
+    <li><a href="portfolio.html"><span class="num">02</span>Portfolio</a></li>
+    <li><a href="about.html"><span class="num">03</span>About</a></li>
+    <li><a href="contact.html" class="current"><span class="num">04</span>Contact</a></li>
+  </ul>
+  <div class="nav-panel-footer">
+    <span data-bind="nav-tagline">Danish artist based in Copenhagen, formerly of Pau, France. Working in spray, acrylic, paper, and sculpture.</span>
+    <div class="socials">
+      <a href="https://instagram.com/willaingdraws" data-bind-href="instagram-url" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+    </div>
+  </div>
+</nav>
+
+<main id="contact-root">
+
+  <div class="container">
+    <div class="page-header">
+      <span class="eyebrow fade-in">Get In Touch</span>
+      <h1 class="fade-in">Contact</h1>
+      <p class="fade-in" data-field="page-intro">Commissions are selective and taken by inquiry only. Gallery inquiries, press, or just want to talk about the work — send a message directly.</p>
+    </div>
+  </div>
+
+  <section class="section" style="border-bottom: none;">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="fade-in">
+          <form class="contact-form">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com" required>
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Commission / Gallery / Press / Other">
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me a bit about what you have in mind..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-solid">Send Message <span class="btn-arrow">→</span></button>
+            <p class="form-confirmation" style="margin-top:1rem; font-size:0.85rem; color:var(--slate); opacity:0; transition:opacity 0.3s ease;">Thanks — your message has been noted. A reply will follow within 2–3 business days.</p>
+          </form>
+        </div>
+
+        <div class="contact-info-block fade-in" data-field="info-block">
+          <h3>Email</h3>
+          <a href="mailto:bwj.4rt@gmail.com">bwj.4rt@gmail.com</a>
+
+          <h3>Based</h3>
+          <p>Copenhagen, Denmark<br>Previously Pau, France</p>
+
+          <h3>Commissions</h3>
+          <p>Selective, by inquiry only. Tell me a bit about what you have in mind and I'll get back to you.</p>
+
+          <h3>Response Time</h3>
+          <p>2–3 business days for general inquiries. Commission requests may take longer during active project periods.</p>
+
+          <h3>Follow</h3>
+          <div class="social-row">
+            <a href="https://instagram.com/willaingdraws" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<style>
+  .form-confirmation.is-visible { opacity: 1 !important; }
+</style>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="dot"></span>BWJ-ART</div>
+        <p data-bind="footer-tagline">BWJ — spray paint, acrylic, paper, and sculptural works about anxiety, memory, and the feelings of youth.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="about.html">Artist Statement</a></li>
+          <li><a href="about.html#timeline">Timeline</a></li>
+          <li><a href="portfolio.html">Full Portfolio</a></li>
+          <li><a href="contact.html">Commissions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:bwj.4rt@gmail.com" data-bind-href="email-mailto"><span data-bind="email">bwj.4rt@gmail.com</span></a></li>
+          <li><a href="https://instagram.com/willaingdraws" data-bind-href="instagram-url" target="_blank" rel="noopener">@<span data-bind="instagram-handle">willaingdraws</span></a></li>
+        </ul>
+        <div class="socials">
+          <a href="https://instagram.com/willaingdraws" data-bind-href="instagram-url" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-bind="footer-copyright">© 2026 BWJ-ART. All rights reserved.</span>
+      <span data-bind="footer-built-with">Built with spray cans, pencil, and patience.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top">↑</button>
+
+<script src="js/script.js"></script>
+<script src="js/render.js"></script>
+</body>
+</html>

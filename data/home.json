@@ -1,0 +1,23 @@
+{
+  "heroTag": "Studio Practice — Est. 2021",
+  "heroHeadingLine1": "Live, not",
+  "heroHeadingLine2": "just",
+  "heroHeadingEmphasis": "survive.",
+  "heroSub": "BWJ-ART, an Autistic Danish artist working with spray paint, acrylic, paper, and sculpturing. What started as anxiety management has become self expression.",
+  "heroMeta": [
+    { "label": "Discipline", "value": "Spray / Acrylic / Sculpture" },
+    { "label": "Based", "value": "Copenhagen, Denmark" },
+    { "label": "Commissions", "value": "Selective, By Inquiry" }
+  ],
+  "statementHeadingLine1": "Art is too",
+  "statementHeadingLine2": "personal to explain.",
+  "statementQuote": "The message I try to send does not have to be the one perceived, as long as it makes you think the work is successful. — BWJ",
+  "featuredWork": ["hope", "splinters-beams", "its-yours"],
+  "processIntro": "No formula. Just a rhythm that starts with a feeling and ends on canvas.",
+  "processSteps": [
+    { "num": "01", "title": "Feel", "text": "Music, anxiety, restlessness, and the everyday feelings of youth supply the first spark." },
+    { "num": "02", "title": "Sketch", "text": "Fine liners, pencil, and quick studies work out the shape of a new composition." },
+    { "num": "03", "title": "Layer", "text": "Spray paint, acrylic, wire, and posca marker are built up across canvas, Masonite, and paper." },
+    { "num": "04", "title": "Let It Go", "text": "The message doesn't have to land the way it was meant to. Art is too personal for that." }
+  ]
+}

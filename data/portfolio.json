@@ -1,0 +1,227 @@
+{
+  "items": [
+    {
+      "id": "the-hands",
+      "title": "The Hands",
+      "category": "life",
+      "materials": "Spray-Paint on Canvas (2 Panels)",
+      "dimensions": "20.5×20.5×3.6cm each",
+      "description": "Inspired by 'The Creation of Adam.' Depicts the need for an extraterrestrial or divine intervention.",
+      "tags": ["Available — Price on Inquiry"],
+      "diptych": true,
+      "images": [
+        { "src": "assets/img/the-hands-1.jpg", "alt": "The Hands — panel one, black lines on white canvas", "note": "Second panel of the same piece, inverted in tone." },
+        { "src": "assets/img/the-hands-2.jpg", "alt": "The Hands — panel two, glowing hand on black canvas", "note": "Second panel of the same piece, inverted in tone." }
+      ]
+    },
+    {
+      "id": "forest-of-life",
+      "title": "The Forest of Life",
+      "category": "life",
+      "materials": "Acrylic on Canvas",
+      "dimensions": "20×20×3.7cm",
+      "description": "A foggy, misty forest with no visible end or beginning. Inspired by being lost in life.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/forest-of-life.jpg",
+      "alt": "The Forest of Life — textured acrylic painting of bare trees in fog"
+    },
+    {
+      "id": "its-yours",
+      "title": "IT'S Yours",
+      "category": "life",
+      "materials": "Acrylic + Spray",
+      "dimensions": "30×40×3.8cm",
+      "description": "Depicts the act of handing over what is dearest to you, what you need to survive.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/its-yours.jpg",
+      "alt": "IT'S Yours — a heart painted in black over a red canvas"
+    },
+    {
+      "id": "circle",
+      "title": "Circle",
+      "category": "life",
+      "materials": "Mixed Media",
+      "dimensions": "30×40×3.8cm",
+      "description": "The circle of life; not all death is ugly or sad.",
+      "tags": ["Sold"],
+      "image": "assets/img/circle-of-life.jpg",
+      "alt": "Circle — wire butterfly and ink skull drawing on canvas"
+    },
+    {
+      "id": "red-strings-1",
+      "title": "Red Strings (I)",
+      "category": "life",
+      "materials": "Mixed Media on Paper",
+      "dimensions": "42×29.7cm",
+      "description": "The red string of life, tangled and coming apart. Inspired by the Norns of Northern mythology.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/red-strings-1.jpg",
+      "alt": "Red Strings (I) — red thread drawing over black and white sketchbook page"
+    },
+    {
+      "id": "red-strings-2",
+      "title": "Red Strings (II)",
+      "category": "life",
+      "materials": "Mixed Media on Paper",
+      "dimensions": "42×29.7cm",
+      "description": "Some strings follow you all the way; others are only tangled with you for a time, for better or worse.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/red-strings-2.jpg",
+      "alt": "Red Strings (II) — red thread drawing on white sketchbook page"
+    },
+    {
+      "id": "red-strings-3",
+      "title": "Red Strings (III)",
+      "category": "life",
+      "materials": "Yarn, Wire & Cement",
+      "dimensions": "60×80cm",
+      "description": "The thread leaves the page and lands on stone; what holds you together doesn't need to be delicate to still be real.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/red-strings-3.jpg",
+      "alt": "Red Strings (III) — red yarn spiral over a light cement panel"
+    },
+    {
+      "id": "hope",
+      "title": "Ho9e",
+      "category": "life",
+      "materials": "Spray-Paint",
+      "dimensions": "40×40×4cm",
+      "description": "A hand reaching out towards the good and beautiful. Inspired by Banksy. Sold at the Filmantiq exhibit, 2023.",
+      "tags": ["Sold — Filmantiq 2023"],
+      "image": "assets/img/hope.jpg",
+      "alt": "Ho9e — spray paint hand and butterfly on teal canvas"
+    },
+    {
+      "id": "flutter",
+      "title": "Flutter",
+      "category": "life",
+      "materials": "Spray-Paint",
+      "dimensions": "20×20×3.6cm",
+      "description": "Like your heart, a butterfly's wings flutter. Inspired by 'Hold Me Tight' (2004) by Bjørn Agertved.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/flutter.jpg",
+      "alt": "Flutter — black spray paint butterfly on yellow canvas"
+    },
+    {
+      "id": "fly-high",
+      "title": "FLY H–GH",
+      "category": "life",
+      "materials": "Acrylic + Posca",
+      "dimensions": "20×20×3.6cm",
+      "description": "Sometimes you need help to leave the ground. Doesn't make you any less beautiful.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/fly-high.jpg",
+      "alt": "FLY H-GH — blue and purple butterfly painting"
+    },
+    {
+      "id": "i-wanna-live",
+      "title": "I Wanna Live Not Just Survive",
+      "category": "life",
+      "materials": "Acrylic on Canvas",
+      "dimensions": "90.5×65×1cm",
+      "description": "The need to live, to move on, not just be stuck in routines, and especially not get left behind by the bus of life.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/i-wanna-live.jpg",
+      "alt": "I Wanna Live Not Just Survive — stenciled text and angel wing painting"
+    },
+    {
+      "id": "splinters-beams",
+      "title": "Splinters & Beams",
+      "category": "life",
+      "materials": "Acrylic + Spray",
+      "dimensions": "107×75×0.5cm",
+      "description": "We spend so much time judging others, often making larger mistakes ourselves. We fail to see the beam in our own eye.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/splinters-beams.jpg",
+      "alt": "Splinters & Beams — large glowing hand pointing, spray paint on grey panel"
+    },
+    {
+      "id": "parasitic-rose",
+      "title": "Parasitic Rose",
+      "category": "life",
+      "materials": "Pencil on Paper",
+      "dimensions": "42×29.7cm",
+      "description": "A rose leaching off of a heart. Someone came into my life, grew, and left.",
+      "tags": ["Sold"],
+      "image": "assets/img/parasitic-rose.jpg",
+      "alt": "Parasitic Rose — graphite drawing of a rose growing from an anatomical heart, burnt paper edges"
+    },
+    {
+      "id": "self-portrait",
+      "title": "Self Portrait",
+      "category": "life",
+      "materials": "Paper Cut",
+      "dimensions": "21×29.7cm",
+      "description": "The moment of confidence sparked by momentary self-appreciation.",
+      "tags": ["Sold"],
+      "image": "assets/img/self-portrait-cut.jpg",
+      "alt": "Self Portrait — black and white paper-cut portrait"
+    },
+    {
+      "id": "the-pull",
+      "title": "The Pull",
+      "category": "life",
+      "materials": "Posca + Spray",
+      "dimensions": "30×40×3.8cm",
+      "description": "There is a pull only a rose can create.",
+      "tags": ["Sold"],
+      "image": "assets/img/rose-pull.jpg",
+      "alt": "The Pull — rose and hand illustration on a blue circle over black canvas"
+    },
+    {
+      "id": "expression",
+      "title": "Expression",
+      "category": "life",
+      "materials": "Wire Sculpture",
+      "dimensions": "approx. 30×40×3.8cm",
+      "description": "Hands are what we use to express ourselves, so I made one to express me.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/hand-wire-sculpture.jpg",
+      "alt": "Expression — hand sculpture made of woven black wire"
+    },
+    {
+      "id": "lies",
+      "title": "Lies",
+      "category": "life",
+      "materials": "Spray + Posca",
+      "dimensions": "29.7×42cm",
+      "description": "What is the perfect crime? A lie — you steal someone's right to the truth, and often get away with it. Published in Ojo Vulgar 'El Crimen Perfecto.'",
+      "tags": ["Published — Ojo Vulgar", "Available — Price on Inquiry"],
+      "image": "assets/img/lies.jpg",
+      "alt": "Lies — stenciled figure with an X above the head on a blue background"
+    },
+    {
+      "id": "but-can-it-fly",
+      "title": "But Can It Flλ?",
+      "category": "hictb",
+      "materials": "Acrylic + Posca",
+      "dimensions": "20.5×20.5×3.6cm",
+      "description": "Inspired by 'Isn't It Time To Let It Fly?' by Bjørn Agertved.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/but-can-it-fly.jpg",
+      "alt": "But Can It Fly? — blue butterfly painting on orange-bordered canvas"
+    },
+    {
+      "id": "tokyo-study",
+      "title": "Tokyo Study",
+      "category": "hictb",
+      "materials": "Posca Markers",
+      "dimensions": "20.5×20.5×3.6cm",
+      "description": "Inspired by 'TOKYO' by TITOMULK.",
+      "tags": ["Sold"],
+      "image": "assets/img/power-lines.jpg",
+      "alt": "Tokyo Study — power lines and utility pole painted on purple canvas"
+    },
+    {
+      "id": "rough-edges",
+      "title": "Rough Edges",
+      "category": "hictb",
+      "materials": "Mixed Media on Paper",
+      "dimensions": "21×29.7cm",
+      "description": "We all have rough edges and issues, just in different ways. What appears perfect is, on closer look, just as imperfect. Published in Ojo Vulgar Horssérie BIZARRES.",
+      "tags": ["Published — Ojo Vulgar", "Sold"],
+      "image": "assets/img/rough-edges.jpg",
+      "alt": "Rough Edges — line drawing of eyes and rose petals in coloured pencil"
+    }
+  ]
+}

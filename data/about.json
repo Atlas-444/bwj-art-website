@@ -1,0 +1,52 @@
+{
+  "pageIntro": "No formal training, no gallery pedigree. Just a reason to make something honest.",
+  "portrait": "assets/img/self-portrait-cut.jpg",
+  "bioParagraphs": [
+    "I'm BWJ. Autistic Dane, based in Copenhagen, though the work still carries a few years in Pau, in the south of France.",
+    "Drawing and creating had always come in periods, but in 2021 it became something more deliberate — a way of getting rid of anxiety and restlessness. Five years on, it's become expression.",
+    "The practice has grown past spray paint, acrylic, and paper — sculpture and other three-dimensional work have found their way in too. The subject hasn't changed as much: still the feelings of youth, still what music and the world put in my head, just handled with a steadier hand."
+  ],
+  "quote": "The message I try to send does not have to be the one perceived, as long as it makes you think the work is successful.",
+  "quoteAuthor": "— BWJ",
+  "stats": [
+    { "value": "19", "label": "Original Works" },
+    { "value": "2", "label": "Exhibitions" },
+    { "value": "2021", "label": "Practice Began" }
+  ],
+  "timelineIntro": "From a CAS project in the IB program to a running archive of exhibited, published, and sold work.",
+  "timeline": [
+    {
+      "year": "2021",
+      "title": "Practice Begins",
+      "text": "Drawing and creating had always come in periods — in 2021, it became a deliberate, daily way of managing anxiety and restlessness. The \"Life\" collection begins here."
+    },
+    {
+      "year": "Nov 2023",
+      "title": "Filmantiq — Ojo Vulgar, Paris",
+      "text": "Group exhibition at Ojo Vulgar gallery, 15 Rue Dupin, Paris 6ème, on 18th November 2023. \"Ho9e\" sold at the show."
+    },
+    {
+      "year": "2023—24",
+      "title": "Published in Ojo Vulgar",
+      "text": "Work featured in two Ojo Vulgar print editions: \"Horssérie BIZARRES\" and \"El Crimen Perfecto.\""
+    },
+    {
+      "year": "Through Sep 2025",
+      "title": "Galleri X",
+      "text": "Continued exhibition work at Galleri X, running through September 2025 — the most recent chapter so far."
+    },
+    {
+      "year": "Since 2021",
+      "title": "Expanding the Practice",
+      "text": "Sculpture and other three-dimensional work have entered the practice alongside painting and paper."
+    }
+  ],
+  "exhibitHeading": "Filmantiq — 18 Nov 2023",
+  "exhibitNote": "Ojo Vulgar Gallery, 15 Rue Dupin, Paris 6ème.",
+  "exhibitGallery": [
+    { "title": "Filmantiq — Ojo Vulgar", "meta": "Exhibition Poster · 18 Nov 2023, Paris", "image": "assets/img/exhibit-poster.jpg", "alt": "BWJ-ART exhibition poster for Filmantiq at Ojo Vulgar, Paris" },
+    { "title": "Opening Night", "meta": "Filmantiq, Ojo Vulgar, Paris — 18 Nov 2023", "image": "assets/img/exhibit-photo-1.jpg", "alt": "Guests at the Filmantiq exhibition opening" },
+    { "title": "Viewing the Work", "meta": "Filmantiq, Ojo Vulgar, Paris — 18 Nov 2023", "image": "assets/img/exhibit-photo-2.jpg", "alt": "Guests viewing artwork on the gallery wall" },
+    { "title": "Gallery Conversation", "meta": "Filmantiq, Ojo Vulgar, Paris — 18 Nov 2023", "image": "assets/img/exhibit-photo-3.jpg", "alt": "Gallery visitors in conversation near hung paintings" }
+  ]
+}

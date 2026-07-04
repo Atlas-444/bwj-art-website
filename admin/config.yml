@@ -1,0 +1,154 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/img"
+public_folder: "assets/img"
+
+collections:
+  - name: "portfolio"
+    label: "Portfolio"
+    files:
+      - name: "portfolio"
+        label: "Portfolio Pieces"
+        file: "data/portfolio.json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "ID (unique, lowercase, no spaces)", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Collection"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Life", value: "life" }
+                  - { label: "How It Came To Be", value: "hictb" }
+              - { label: "Materials", name: "materials", widget: "string" }
+              - { label: "Dimensions", name: "dimensions", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Tags (Sold / Available / Published, etc.)"
+                name: "tags"
+                widget: "list"
+                field: { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Two-image diptych?", name: "diptych", widget: "boolean", default: false, required: false }
+              - { label: "Image (leave blank if diptych)", name: "image", widget: "image", required: false, choose_url: false }
+              - { label: "Image Alt Text", name: "alt", widget: "string", required: false }
+              - label: "Diptych Images (only if diptych is checked)"
+                name: "images"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Image", name: "src", widget: "image", choose_url: false }
+                  - { label: "Alt Text", name: "alt", widget: "string" }
+                  - { label: "Note (this panel's description)", name: "note", widget: "string", required: false }
+
+  - name: "about"
+    label: "About Page"
+    files:
+      - name: "about"
+        label: "About Content"
+        file: "data/about.json"
+        fields:
+          - { label: "Page Intro (under the 'About' heading)", name: "pageIntro", widget: "text" }
+          - { label: "Portrait Image", name: "portrait", widget: "image", choose_url: false }
+          - label: "Bio Paragraphs"
+            name: "bioParagraphs"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Quote", name: "quote", widget: "text" }
+          - { label: "Quote Author", name: "quoteAuthor", widget: "string" }
+          - label: "Stats Row"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+          - { label: "Timeline Section Intro", name: "timelineIntro", widget: "text" }
+          - label: "Timeline"
+            name: "timeline"
+            widget: "list"
+            summary: "{{year}} — {{title}}"
+            fields:
+              - { label: "Year / Date", name: "year", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - { label: "Exhibit Section Heading", name: "exhibitHeading", widget: "string" }
+          - { label: "Exhibit Section Note", name: "exhibitNote", widget: "string" }
+          - label: "Exhibit Gallery"
+            name: "exhibitGallery"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Meta", name: "meta", widget: "string" }
+              - { label: "Image", name: "image", widget: "image", choose_url: false }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+
+  - name: "home"
+    label: "Home Page"
+    files:
+      - name: "home"
+        label: "Home Content"
+        file: "data/home.json"
+        fields:
+          - { label: "Hero Tag (small line above heading)", name: "heroTag", widget: "string" }
+          - { label: "Hero Heading — Line 1", name: "heroHeadingLine1", widget: "string" }
+          - { label: "Hero Heading — Line 2", name: "heroHeadingLine2", widget: "string" }
+          - { label: "Hero Heading — Emphasis Word (colored)", name: "heroHeadingEmphasis", widget: "string" }
+          - { label: "Hero Subtext", name: "heroSub", widget: "text" }
+          - label: "Hero Meta Rows (Discipline / Based / Commissions)"
+            name: "heroMeta"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Value", name: "value", widget: "string" }
+          - { label: "Artist Statement Heading — Line 1", name: "statementHeadingLine1", widget: "string" }
+          - { label: "Artist Statement Heading — Line 2", name: "statementHeadingLine2", widget: "string" }
+          - { label: "Artist Statement Quote", name: "statementQuote", widget: "text" }
+          - label: "Featured Work (portfolio item IDs, in order — see Portfolio tab for IDs)"
+            name: "featuredWork"
+            widget: "list"
+            field: { label: "Portfolio Item ID", name: "id", widget: "string" }
+          - { label: "Process Section Intro", name: "processIntro", widget: "text" }
+          - label: "Process Steps"
+            name: "processSteps"
+            widget: "list"
+            summary: "{{num}} — {{title}}"
+            fields:
+              - { label: "Number", name: "num", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+  - name: "contact"
+    label: "Contact Page"
+    files:
+      - name: "contact"
+        label: "Contact Content"
+        file: "data/contact.json"
+        fields:
+          - { label: "Page Intro", name: "pageIntro", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Based — Line 1", name: "basedLine1", widget: "string" }
+          - { label: "Based — Line 2", name: "basedLine2", widget: "string" }
+          - { label: "Commissions Text", name: "commissions", widget: "text" }
+          - { label: "Response Time", name: "responseTime", widget: "text" }
+          - { label: "Instagram Handle (no @)", name: "instagramHandle", widget: "string" }
+          - { label: "Instagram URL", name: "instagramUrl", widget: "string" }
+
+  - name: "site"
+    label: "Site-Wide (Footer & Nav)"
+    files:
+      - name: "site"
+        label: "Site Settings"
+        file: "data/site.json"
+        fields:
+          - { label: "Nav Panel Tagline", name: "navTagline", widget: "text" }
+          - { label: "Footer Tagline", name: "footerTagline", widget: "text" }
+          - { label: "Footer Copyright", name: "footerCopyright", widget: "string" }
+          - { label: "Footer 'Built With' Line", name: "footerBuiltWith", widget: "string" }
+          - { label: "Instagram Handle (no @)", name: "instagramHandle", widget: "string" }
+          - { label: "Instagram URL", name: "instagramUrl", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
