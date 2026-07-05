@@ -156,17 +156,41 @@ window.initSiteInteractions = function () {
     });
   }
 
-  /* ---------- Contact form (front-end only) ---------- */
+  /* ---------- Contact form (submits to Netlify Forms) ---------- */
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const confirmation = document.querySelector('.form-confirmation');
-      contactForm.reset();
-      if (confirmation) {
-        confirmation.classList.add('is-visible');
-        setTimeout(() => confirmation.classList.remove('is-visible'), 5000);
-      }
+      const errorMsg = document.querySelector('.form-error');
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const data = new URLSearchParams(new FormData(contactForm)).toString();
+
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Form submission failed: ' + res.status);
+          contactForm.reset();
+          if (confirmation) {
+            confirmation.classList.add('is-visible');
+            setTimeout(() => confirmation.classList.remove('is-visible'), 5000);
+          }
+        })
+        .catch((err) => {
+          console.error('[BWJ] contact form submission failed', err);
+          if (errorMsg) {
+            errorMsg.classList.add('is-visible');
+            setTimeout(() => errorMsg.classList.remove('is-visible'), 6000);
+          }
+        })
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 

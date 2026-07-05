@@ -7,6 +7,16 @@
 <meta name="theme-color" content="#FFFFFF">
 <title>Contact — BWJ-ART</title>
 <meta name="description" content="Get in touch with BWJ-ART for commissions, gallery inquiries, and press.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BWJ-ART">
+<meta property="og:title" content="Contact — BWJ-ART">
+<meta property="og:description" content="Get in touch with BWJ-ART for commissions, gallery inquiries, and press.">
+<meta property="og:image" content="https://glittery-croissant-ed09aa.netlify.app/assets/img/hope.jpg">
+<meta property="og:url" content="https://glittery-croissant-ed09aa.netlify.app/contact.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — BWJ-ART">
+<meta name="twitter:description" content="Get in touch with BWJ-ART for commissions, gallery inquiries, and press.">
+<meta name="twitter:image" content="https://glittery-croissant-ed09aa.netlify.app/assets/img/hope.jpg">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -52,7 +62,11 @@
       <div class="contact-grid">
 
         <div class="fade-in">
-          <form class="contact-form">
+          <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hidden-field" style="position:absolute; left:-9999px;">
+              <label>Don't fill this out if you're human: <input name="bot-field"></label>
+            </p>
             <div class="field">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Your full name" required>
@@ -71,6 +85,7 @@
             </div>
             <button type="submit" class="btn btn-solid">Send Message <span class="btn-arrow">→</span></button>
             <p class="form-confirmation" style="margin-top:1rem; font-size:0.85rem; color:var(--slate); opacity:0; transition:opacity 0.3s ease;">Thanks — your message has been noted. A reply will follow within 2–3 business days.</p>
+            <p class="form-error" style="margin-top:1rem; font-size:0.85rem; color:#b33; opacity:0; transition:opacity 0.3s ease;">Something went wrong sending that — please email me directly instead.</p>
           </form>
         </div>
 
@@ -100,7 +115,7 @@
 </main>
 
 <style>
-  .form-confirmation.is-visible { opacity: 1 !important; }
+  .form-confirmation.is-visible, .form-error.is-visible { opacity: 1 !important; }
 </style>
 
 <!-- ============ FOOTER ============ -->
