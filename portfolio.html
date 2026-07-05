@@ -231,6 +231,20 @@
 
 <button class="back-to-top" aria-label="Back to top">↑</button>
 
+<!-- Netlify Identity: catches invite/recovery links that redirect here and
+     shows the "set your password" modal automatically. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 <script src="js/script.js"></script>
 <script src="js/render.js"></script>
 </body>
