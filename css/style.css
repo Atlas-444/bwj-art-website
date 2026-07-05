@@ -58,7 +58,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--slate) var(--off-white); }
 ::-webkit-scrollbar-thumb { background: var(--slate); border: 2px solid var(--off-white); background-clip: padding-box; }
 ::-webkit-scrollbar-thumb:hover { background: var(--slate-dark); background-clip: padding-box; }
 
-img { display: block; max-width: 100%; height: auto; }
+img { display: block; max-width: 100%; height: auto; -webkit-user-drag: none; user-select: none; }
 
 a {
   color: inherit;

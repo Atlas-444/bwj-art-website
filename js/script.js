@@ -156,6 +156,17 @@ window.initSiteInteractions = function () {
     });
   }
 
+  /* ---------- Deter casual image saving (right-click / drag) ----------
+     Not real protection — screenshots always work, and the watermark
+     baked into each artwork image is the actual safeguard. This just
+     removes the one-click "Save Image As" / drag-out shortcut. */
+  document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+
   /* ---------- Contact form (submits to Netlify Forms) ---------- */
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
