@@ -70,17 +70,6 @@
       "alt": "Red Strings (II) — red thread drawing on white sketchbook page"
     },
     {
-      "id": "red-strings-3",
-      "title": "Red Strings (III)",
-      "category": "life",
-      "materials": "Yarn, Wire & Cement",
-      "dimensions": "60×80cm",
-      "description": "The thread leaves the page and lands on stone; what holds you together doesn't need to be delicate to still be real.",
-      "tags": ["Available — Price on Inquiry"],
-      "image": "assets/img/red-strings-3.jpg",
-      "alt": "Red Strings (III) — red yarn spiral over a light cement panel"
-    },
-    {
       "id": "hope",
       "title": "Ho9e",
       "category": "life",
@@ -222,6 +211,17 @@
       "tags": ["Published — Ojo Vulgar", "Sold"],
       "image": "assets/img/rough-edges.jpg",
       "alt": "Rough Edges — line drawing of eyes and rose petals in coloured pencil"
+    },
+    {
+      "id": "red-strings-3",
+      "title": "Red Strings (III)",
+      "category": "life",
+      "materials": "Yarn, Wire & Cement",
+      "dimensions": "60×80cm",
+      "description": "The thread leaves the page and lands on stone; what holds you together doesn't need to be delicate to still be real.",
+      "tags": ["Available — Price on Inquiry"],
+      "image": "assets/img/red-strings-3.jpg",
+      "alt": "Red Strings (III) — red yarn spiral over a light cement panel"
     }
   ]
 }

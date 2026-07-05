@@ -12,7 +12,7 @@
   "statementHeadingLine1": "Art is too",
   "statementHeadingLine2": "personal to explain.",
   "statementQuote": "The message I try to send does not have to be the one perceived, as long as it makes you think the work is successful. — BWJ",
-  "featuredWork": ["hope", "splinters-beams", "its-yours"],
+  "featuredCount": 3,
   "processIntro": "No formula. Just a rhythm that starts with a feeling and ends on canvas.",
   "processSteps": [
     { "num": "01", "title": "Feel", "text": "Music, anxiety, restlessness, and the everyday feelings of youth supply the first spark." },

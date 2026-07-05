@@ -1,0 +1,6 @@
+{
+  "collections": [
+    { "slug": "life", "label": "Life" },
+    { "slug": "hictb", "label": "How It Came To Be" }
+  ]
+}

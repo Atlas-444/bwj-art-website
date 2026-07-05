@@ -21,16 +21,12 @@ window.BWJRender = (function () {
     return res.json();
   }
 
-  function collectionName(cat) {
-    return cat === 'hictb' ? 'How It Came To Be' : 'Life';
-  }
-
   function tagHTML(tags) {
     return (tags || []).map((t) => `<div class="tag">${escapeHTML(t)}</div>`).join('');
   }
 
-  function portfolioItemHTML(item) {
-    const collection = collectionName(item.category);
+  function portfolioItemHTML(item, catMap) {
+    const collection = (catMap && catMap[item.category]) || item.category;
     if (item.diptych) {
       const imgs = item.images.map((im) => {
         const meta = `${item.materials} · ${item.dimensions} · Collection: ${collection} — ${im.note || item.description}`;
@@ -59,6 +55,18 @@ window.BWJRender = (function () {
     return portfolioCache;
   }
 
+  let collectionsCache = null;
+  async function getCollections() {
+    if (!collectionsCache) collectionsCache = await fetchJSON('data/collections.json');
+    return collectionsCache;
+  }
+
+  function collectionMap(collections) {
+    const map = {};
+    (collections.collections || []).forEach((c) => { map[c.slug] = c.label; });
+    return map;
+  }
+
   async function renderSite() {
     const site = await fetchJSON('data/site.json');
     const map = {
@@ -83,9 +91,23 @@ window.BWJRender = (function () {
 
   async function renderPortfolio() {
     const root = document.getElementById('masonry-root');
-    if (!root) return;
-    const data = await getPortfolio();
-    root.innerHTML = data.items.map(portfolioItemHTML).join('\n');
+    const filtersRoot = document.querySelector('[data-field="gallery-filters"]');
+    if (!root && !filtersRoot) return;
+
+    const [data, collections] = await Promise.all([getPortfolio(), getCollections()]);
+    const catMap = collectionMap(collections);
+
+    if (root) {
+      root.innerHTML = data.items.map((item) => portfolioItemHTML(item, catMap)).join('\n');
+    }
+
+    if (filtersRoot) {
+      const buttons = ['<button class="active" data-filter="all">All Work</button>']
+        .concat((collections.collections || []).map((c) =>
+          `<button data-filter="${escapeHTML(c.slug)}">${escapeHTML(c.label)}</button>`
+        ));
+      filtersRoot.innerHTML = buttons.join('\n');
+    }
   }
 
   async function renderHome() {
@@ -117,7 +139,12 @@ window.BWJRender = (function () {
 
     const featured = root.querySelector('[data-field="featured-work"]');
     if (featured) {
-      const items = home.featuredWork.map((id) => portfolio.items.find((p) => p.id === id)).filter(Boolean);
+      // "Recent Pieces" is fully automatic: it's always the last N items in
+      // portfolio.json, reversed so the newest addition shows first. New
+      // pieces added through the CMS get appended to the end of the list,
+      // so this needs no manual curation.
+      const count = home.featuredCount || 3;
+      const items = portfolio.items.slice(-count).reverse();
       featured.innerHTML = items.map((item) => {
         const img = item.diptych ? item.images[0].src : item.image;
         const alt = item.diptych ? item.images[0].alt : item.alt;

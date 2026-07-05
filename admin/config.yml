@@ -22,10 +22,13 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - label: "Collection"
                 name: "category"
-                widget: "select"
-                options:
-                  - { label: "Life", value: "life" }
-                  - { label: "How It Came To Be", value: "hictb" }
+                widget: "relation"
+                collection: "collections"
+                file: "collections"
+                search_fields: ["collections.*.label"]
+                value_field: "collections.*.slug"
+                display_fields: ["collections.*.label"]
+                hint: "Pick from the collections defined in the 'Collections' tab. Add a new collection there first if you don't see the one you want."
               - { label: "Materials", name: "materials", widget: "string" }
               - { label: "Dimensions", name: "dimensions", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
@@ -44,6 +47,22 @@ collections:
                   - { label: "Image", name: "src", widget: "image", choose_url: false }
                   - { label: "Alt Text", name: "alt", widget: "string" }
                   - { label: "Note (this panel's description)", name: "note", widget: "string", required: false }
+
+  - name: "collections"
+    label: "Collections"
+    files:
+      - name: "collections"
+        label: "Portfolio Collections"
+        file: "data/collections.json"
+        fields:
+          - label: "Collections"
+            name: "collections"
+            widget: "list"
+            summary: "{{label}}"
+            hint: "These show up as filter buttons on the Portfolio page (in this order), and as choices for each piece's 'Collection' field. Add a new one any time — just give it a short slug (lowercase, no spaces) and a display label."
+            fields:
+              - { label: "Slug (lowercase, no spaces, e.g. 'sculpture')", name: "slug", widget: "string" }
+              - { label: "Display Label (e.g. 'Sculpture')", name: "label", widget: "string" }
 
   - name: "about"
     label: "About Page"
@@ -108,10 +127,14 @@ collections:
           - { label: "Artist Statement Heading — Line 1", name: "statementHeadingLine1", widget: "string" }
           - { label: "Artist Statement Heading — Line 2", name: "statementHeadingLine2", widget: "string" }
           - { label: "Artist Statement Quote", name: "statementQuote", widget: "text" }
-          - label: "Featured Work (portfolio item IDs, in order — see Portfolio tab for IDs)"
-            name: "featuredWork"
-            widget: "list"
-            field: { label: "Portfolio Item ID", name: "id", widget: "string" }
+          - label: "Number of Recent Pieces to Show"
+            name: "featuredCount"
+            widget: "number"
+            valueType: "int"
+            min: 1
+            max: 6
+            default: 3
+            hint: "The 'Recent Pieces' section on Home always shows the newest additions to the Portfolio automatically — this just controls how many. To feature a specific piece, add it to the Portfolio (it'll show up here once it's among the most recent)."
           - { label: "Process Section Intro", name: "processIntro", widget: "text" }
           - label: "Process Steps"
             name: "processSteps"
