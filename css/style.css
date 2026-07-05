@@ -696,7 +696,9 @@ body.nav-open { overflow: hidden; }
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next,
-.lightbox-rotate {
+.lightbox-rotate,
+.lightbox-rotate-ccw,
+.lightbox-download {
   position: absolute;
   color: var(--white);
   width: 48px;
@@ -711,10 +713,14 @@ body.nav-open { overflow: hidden; }
 .lightbox-close:hover,
 .lightbox-prev:hover,
 .lightbox-next:hover,
-.lightbox-rotate:hover { background: var(--slate); }
+.lightbox-rotate:hover,
+.lightbox-rotate-ccw:hover,
+.lightbox-download:hover { background: var(--slate); }
 
 .lightbox-close { top: var(--space-md); right: var(--space-md); }
 .lightbox-rotate { top: var(--space-md); right: calc(var(--space-md) + 58px); }
+.lightbox-rotate-ccw { top: var(--space-md); right: calc(var(--space-md) + 116px); }
+.lightbox-download { top: var(--space-md); right: calc(var(--space-md) + 174px); }
 .lightbox-prev { left: var(--space-md); top: 50%; transform: translateY(-50%); }
 .lightbox-next { right: var(--space-md); top: 50%; transform: translateY(-50%); }
 
@@ -1116,8 +1122,10 @@ footer {
   .nav-links li a { font-size: 1.6rem; }
   .hero-meta { gap: var(--space-md); }
   .lightbox-prev, .lightbox-next { width: 44px; height: 44px; }
-  .lightbox-close, .lightbox-rotate { width: 44px; height: 44px; }
+  .lightbox-close, .lightbox-rotate, .lightbox-rotate-ccw, .lightbox-download { width: 44px; height: 44px; font-size: 1rem; }
   .lightbox-rotate { right: calc(var(--space-md) + 52px); }
+  .lightbox-rotate-ccw { right: calc(var(--space-md) + 104px); }
+  .lightbox-download { right: calc(var(--space-md) + 156px); }
   .section-header { flex-direction: column; align-items: flex-start; }
   .exhibit-gallery { grid-template-columns: 1fr 1fr; }
   .contact-info-block h3 { margin-top: var(--space-sm); }
@@ -1130,6 +1138,16 @@ footer {
   .hero-meta { flex-direction: column; gap: 1.25rem; }
   .hero { padding-bottom: calc(var(--space-xl) + 2.5rem); }
   .scroll-cue { display: none; }
+
+  /* Tighten the lightbox's top-right control cluster (close/rotate x2/download)
+     so all four fit without crowding on narrow phones. */
+  .lightbox-close, .lightbox-rotate, .lightbox-rotate-ccw, .lightbox-download {
+    width: 40px; height: 40px; font-size: 0.9rem;
+  }
+  .lightbox-close { right: var(--space-sm); }
+  .lightbox-rotate { right: calc(var(--space-sm) + 44px); }
+  .lightbox-rotate-ccw { right: calc(var(--space-sm) + 88px); }
+  .lightbox-download { right: calc(var(--space-sm) + 132px); }
 }
 
 /* Landscape phones — hero shouldn't force a full viewport height when short */
