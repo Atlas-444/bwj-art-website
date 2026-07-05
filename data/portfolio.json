@@ -10,7 +10,7 @@
       "tags": ["Available — Price on Inquiry"],
       "diptych": true,
       "images": [
-        { "src": "assets/img/the-hands-1.jpg", "alt": "The Hands — panel one, black lines on white canvas", "note": "Second panel of the same piece, inverted in tone." },
+        { "src": "assets/img/the-hands-1.jpg", "alt": "The Hands — panel one, black lines on white canvas", "note": "First panel of the piece, in black over white." },
         { "src": "assets/img/the-hands-2.jpg", "alt": "The Hands — panel two, glowing hand on black canvas", "note": "Second panel of the same piece, inverted in tone." }
       ]
     },
