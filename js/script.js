@@ -91,6 +91,7 @@ window.initSiteInteractions = function () {
     const capMeta = lightbox.querySelector('.cap-meta');
     const rotateBtn = lightbox.querySelector('.lightbox-rotate');
     const rotateCcwBtn = lightbox.querySelector('.lightbox-rotate-ccw');
+    const downloadBtn = lightbox.querySelector('.lightbox-download');
     let currentIndex = 0;
     let currentRotation = 0;
 
@@ -173,6 +174,76 @@ window.initSiteInteractions = function () {
       });
     }
 
+    /* ---------- Watermark-on-download ----------
+       The site displays the clean, un-watermarked artwork at all times.
+       The watermark is only ever applied to the copy a visitor actually
+       takes with them: clicking Download draws the current image (at its
+       current rotation) onto an off-screen canvas, stamps "BWJ-ART" onto
+       that canvas, and downloads the result. Nothing watermarked ever
+       touches the page itself. This can't stop a screenshot, or someone
+       bypassing the site to grab the raw file directly — it only covers
+       copies made through this button. */
+    function buildWatermarkedBlob(callback) {
+      const w = lightboxImg.naturalWidth;
+      const h = lightboxImg.naturalHeight;
+      if (!w || !h) return;
+      const rotated = currentRotation % 180 !== 0;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = rotated ? h : w;
+      canvas.height = rotated ? w : h;
+      const ctx = canvas.getContext('2d');
+
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((currentRotation * Math.PI) / 180);
+      ctx.drawImage(lightboxImg, -w / 2, -h / 2, w, h);
+      ctx.restore();
+
+      const text = 'BWJ-ART';
+      const fontSize = Math.max(18, Math.round(canvas.width / 18));
+      ctx.font = `bold ${fontSize}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.lineWidth = Math.max(1, Math.round(fontSize / 18));
+
+      const positions = [
+        [0.18, 0.15], [0.82, 0.28], [0.5, 0.5], [0.18, 0.72], [0.82, 0.85]
+      ];
+      positions.forEach(([fx, fy]) => {
+        ctx.save();
+        ctx.translate(canvas.width * fx, canvas.height * fy);
+        ctx.rotate((-28 * Math.PI) / 180);
+        ctx.strokeStyle = 'rgba(0,0,0,0.28)';
+        ctx.strokeText(text, 0, 0);
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
+      });
+
+      canvas.toBlob((blob) => callback(blob), 'image/jpeg', 0.92);
+    }
+
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        buildWatermarkedBlob((blob) => {
+          if (!blob) return;
+          const slug = (capTitle.textContent || 'bwj-art')
+            .toLowerCase().trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-+|-+$)/g, '') || 'bwj-art';
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `${slug}-bwj-art-watermarked.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 4000);
+        });
+      });
+    }
+
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) window.closeLightbox();
     });
@@ -214,9 +285,11 @@ window.initSiteInteractions = function () {
   }
 
   /* ---------- Deter casual image saving (right-click / drag) ----------
-     Not real protection — screenshots always work, and nothing
-     client-side can stop those. This just removes the one-click native
-     "Save Image As" / drag-out shortcut. */
+     Not real protection — screenshots always work, and anyone who views
+     page source or the network tab can still fetch the clean file
+     directly. This just removes the one-click native "Save Image As" /
+     drag-out shortcut, steering casual visitors toward the lightbox's
+     Download button instead. */
   document.addEventListener('contextmenu', (e) => {
     if (e.target.tagName === 'IMG') e.preventDefault();
   });
