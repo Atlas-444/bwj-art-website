@@ -89,12 +89,45 @@ window.initSiteInteractions = function () {
     const lightboxImg = lightbox.querySelector('img');
     const capTitle = lightbox.querySelector('.cap-title');
     const capMeta = lightbox.querySelector('.cap-meta');
+    const rotateBtn = lightbox.querySelector('.lightbox-rotate');
     let currentIndex = 0;
+    let currentRotation = 0;
+
+    /* Rotating an <img> with CSS transform doesn't swap its bounding box,
+       so at 90/270deg we compute an explicit width/height (using the
+       image's natural size) that keeps the rotated image fully contained
+       within the same viewing area instead of overflowing or clipping. */
+    function fitRotatedImage() {
+      const boxW = Math.min(window.innerWidth * 0.9, 1100);
+      const boxH = window.innerHeight * 0.72;
+      const w = lightboxImg.naturalWidth;
+      const h = lightboxImg.naturalHeight;
+      if (!w || !h) return;
+
+      let scale;
+      if (currentRotation % 180 === 0) {
+        scale = Math.min(boxW / w, boxH / h, 1);
+      } else {
+        scale = Math.min(boxW / h, boxH / w, 1);
+      }
+      lightboxImg.style.width = (w * scale) + 'px';
+      lightboxImg.style.height = (h * scale) + 'px';
+      lightboxImg.style.transform = `rotate(${currentRotation}deg)`;
+    }
+
+    lightboxImg.addEventListener('load', fitRotatedImage);
+    window.addEventListener('resize', () => {
+      if (lightbox.classList.contains('active')) fitRotatedImage();
+    });
 
     function showImage(index) {
       currentIndex = (index + galleryItems.length) % galleryItems.length;
       const item = galleryItems[currentIndex];
       const fullSrc = item.getAttribute('data-full') || item.querySelector('img').src;
+      currentRotation = 0;
+      lightboxImg.style.width = '';
+      lightboxImg.style.height = '';
+      lightboxImg.style.transform = '';
       lightboxImg.src = fullSrc;
       lightboxImg.alt = item.getAttribute('data-title') || '';
       capTitle.textContent = item.getAttribute('data-title') || '';
@@ -120,6 +153,13 @@ window.initSiteInteractions = function () {
     lightbox.querySelector('.lightbox-prev').addEventListener('click', () => showImage(currentIndex - 1));
     lightbox.querySelector('.lightbox-next').addEventListener('click', () => showImage(currentIndex + 1));
 
+    if (rotateBtn) {
+      rotateBtn.addEventListener('click', () => {
+        currentRotation = (currentRotation + 90) % 360;
+        fitRotatedImage();
+      });
+    }
+
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) window.closeLightbox();
     });
@@ -128,6 +168,10 @@ window.initSiteInteractions = function () {
       if (!lightbox.classList.contains('active')) return;
       if (e.key === 'ArrowRight') showImage(currentIndex + 1);
       if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+      if (e.key === 'r' || e.key === 'R') {
+        currentRotation = (currentRotation + 90) % 360;
+        fitRotatedImage();
+      }
     });
   } else {
     window.closeLightbox = function () {};
