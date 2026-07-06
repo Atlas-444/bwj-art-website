@@ -39,6 +39,17 @@ collections:
               - { label: "Two-image diptych?", name: "diptych", widget: "boolean", default: false, required: false }
               - { label: "Image (leave blank if diptych)", name: "image", widget: "image", required: false, choose_url: false }
               - { label: "Image Alt Text", name: "alt", widget: "string", required: false }
+              - label: "Image Rotation (fixes a sideways or upside-down photo)"
+                name: "rotation"
+                widget: "select"
+                options:
+                  - { label: "None", value: 0 }
+                  - { label: "90° clockwise", value: 90 }
+                  - { label: "180°", value: 180 }
+                  - { label: "270° clockwise (= 90° counter-clockwise)", value: 270 }
+                default: 0
+                required: false
+                hint: "How this photo appears in the portfolio grid, the home page, and when first opened in the viewer. Visitors can still rotate further from here using the viewer's rotate buttons."
               - label: "Diptych Images (only if diptych is checked)"
                 name: "images"
                 widget: "list"
@@ -47,6 +58,16 @@ collections:
                   - { label: "Image", name: "src", widget: "image", choose_url: false }
                   - { label: "Alt Text", name: "alt", widget: "string" }
                   - { label: "Note (this panel's description)", name: "note", widget: "string", required: false }
+                  - label: "Image Rotation (fixes a sideways or upside-down photo)"
+                    name: "rotation"
+                    widget: "select"
+                    options:
+                      - { label: "None", value: 0 }
+                      - { label: "90° clockwise", value: 90 }
+                      - { label: "180°", value: 180 }
+                      - { label: "270° clockwise (= 90° counter-clockwise)", value: 270 }
+                    default: 0
+                    required: false
 
   - name: "collections"
     label: "Collections"

@@ -87,6 +87,7 @@ window.initSiteInteractions = function () {
 
   if (lightbox && galleryItems.length) {
     const lightboxImg = lightbox.querySelector('img');
+    const lightboxImgWrap = lightbox.querySelector('.lightbox-img-wrap');
     const capTitle = lightbox.querySelector('.cap-title');
     const capMeta = lightbox.querySelector('.cap-meta');
     const rotateBtn = lightbox.querySelector('.lightbox-rotate');
@@ -95,10 +96,16 @@ window.initSiteInteractions = function () {
     let currentIndex = 0;
     let currentRotation = 0;
 
-    /* Rotating an <img> with CSS transform doesn't swap its bounding box,
-       so at 90/270deg we compute an explicit width/height (using the
-       image's natural size) that keeps the rotated image fully contained
-       within the same viewing area instead of overflowing or clipping. */
+    /* Rotating an <img> with a CSS transform doesn't change the space it
+       reserves in the page's layout flow — only how it's rendered. So at
+       90/270deg, the image's un-rotated layout box and its visually
+       rotated bounding box are different shapes, and without accounting
+       for that, the rotated image can visually overflow past its
+       reserved space (overlapping the caption below) or leave a gap.
+       Fix: size the wrapper to the correct POST-rotation visual box, and
+       size the <img> itself (pre-rotation) so that rotating it lands
+       exactly on that box. The wrapper's flex centering keeps it
+       centered regardless of the mismatch between the two box shapes. */
     function fitRotatedImage() {
       const boxW = Math.min(window.innerWidth * 0.9, 1100);
       const boxH = window.innerHeight * 0.72;
@@ -106,15 +113,24 @@ window.initSiteInteractions = function () {
       const h = lightboxImg.naturalHeight;
       if (!w || !h) return;
 
+      const rotated = currentRotation % 180 !== 0;
       let scale;
-      if (currentRotation % 180 === 0) {
+      if (!rotated) {
         scale = Math.min(boxW / w, boxH / h, 1);
       } else {
         scale = Math.min(boxW / h, boxH / w, 1);
       }
-      lightboxImg.style.width = (w * scale) + 'px';
-      lightboxImg.style.height = (h * scale) + 'px';
+      const layoutW = w * scale;
+      const layoutH = h * scale;
+
+      lightboxImg.style.width = layoutW + 'px';
+      lightboxImg.style.height = layoutH + 'px';
       lightboxImg.style.transform = `rotate(${currentRotation}deg)`;
+
+      if (lightboxImgWrap) {
+        lightboxImgWrap.style.width = (rotated ? layoutH : layoutW) + 'px';
+        lightboxImgWrap.style.height = (rotated ? layoutW : layoutH) + 'px';
+      }
     }
 
     lightboxImg.addEventListener('load', fitRotatedImage);
@@ -126,10 +142,17 @@ window.initSiteInteractions = function () {
       currentIndex = (index + galleryItems.length) % galleryItems.length;
       const item = galleryItems[currentIndex];
       const fullSrc = item.getAttribute('data-full') || item.querySelector('img').src;
-      currentRotation = 0;
+      // Pieces can have a "correct" starting orientation set in the CMS
+      // (data-rotation) for photos that were shot sideways; visitors can
+      // still rotate further from there with the buttons.
+      currentRotation = parseInt(item.getAttribute('data-rotation'), 10) || 0;
       lightboxImg.style.width = '';
       lightboxImg.style.height = '';
       lightboxImg.style.transform = '';
+      if (lightboxImgWrap) {
+        lightboxImgWrap.style.width = '';
+        lightboxImgWrap.style.height = '';
+      }
       lightboxImg.src = fullSrc;
       lightboxImg.alt = item.getAttribute('data-title') || '';
       capTitle.textContent = item.getAttribute('data-title') || '';
@@ -260,6 +283,34 @@ window.initSiteInteractions = function () {
   } else {
     window.closeLightbox = function () {};
   }
+
+  /* ---------- Grid thumbnail rotation (CMS-set, for sideways photos) ----------
+     Mirrors the lightbox's rotation fix: a wrapper reserves the correct
+     post-rotation visual box (based on the column's actual rendered
+     width) so a rotated thumbnail doesn't overlap the caption below it
+     or leave a gap. Only runs on images explicitly wrapped by render.js
+     (i.e. items with a non-zero rotation set in the CMS). */
+  document.querySelectorAll('.thumb-rotate-wrap').forEach((wrap) => {
+    const img = wrap.querySelector('img');
+    const rotation = parseInt(wrap.getAttribute('data-rotation'), 10) || 0;
+    if (!img || !rotation) return;
+
+    function apply() {
+      const w = img.naturalWidth;
+      const h = img.naturalHeight;
+      const columnWidth = wrap.clientWidth;
+      if (!w || !h || !columnWidth) return;
+      const visualH = columnWidth * (w / h);
+      wrap.style.height = visualH + 'px';
+      img.style.width = visualH + 'px';
+      img.style.height = columnWidth + 'px';
+      img.style.setProperty('--thumb-rotation', rotation + 'deg');
+    }
+
+    if (img.complete && img.naturalWidth) apply();
+    img.addEventListener('load', apply);
+    window.addEventListener('resize', apply);
+  });
 
   /* ---------- Gallery filters (portfolio page) ---------- */
   const filterButtons = document.querySelectorAll('.gallery-filters button');

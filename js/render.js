@@ -25,14 +25,31 @@ window.BWJRender = (function () {
     return (tags || []).map((t) => `<div class="tag">${escapeHTML(t)}</div>`).join('');
   }
 
+  /* Renders a thumbnail <img>, honoring a per-image "rotation" set in the
+     CMS (0/90/180/270 clockwise) for photos that were shot sideways.
+     180deg needs no layout help (it doesn't change the image's shape), so
+     it's just a plain inline transform. 90/270deg swap the image's visual
+     width/height, so those get wrapped in a sized container that script.js
+     fits to the correct post-rotation box on load (same problem/fix as
+     the lightbox — see fitGridRotations in script.js). */
+  function thumbImgHTML(src, alt, rotation) {
+    const r = Number(rotation) || 0;
+    const imgTag = `<img src="${src}" alt="${escapeHTML(alt)}" loading="lazy"${r === 180 ? ' style="transform:rotate(180deg)"' : ''}>`;
+    if (r === 90 || r === 270) {
+      return `<div class="thumb-rotate-wrap" data-rotation="${r}">${imgTag}</div>`;
+    }
+    return imgTag;
+  }
+
   function portfolioItemHTML(item, catMap) {
     const collection = (catMap && catMap[item.category]) || item.category;
     if (item.diptych) {
       const imgs = item.images.map((im) => {
         const meta = `${item.materials} · ${item.dimensions} · Collection: ${collection} — ${im.note || item.description}`;
+        const r = Number(im.rotation) || 0;
         return `
-          <div data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${escapeHTML(meta)}" data-full="${im.src}">
-            <img src="${im.src}" alt="${escapeHTML(im.alt)}" loading="lazy">
+          <div data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${escapeHTML(meta)}" data-full="${im.src}" data-rotation="${r}">
+            ${thumbImgHTML(im.src, im.alt, r)}
           </div>`;
       }).join('');
       return `
@@ -42,9 +59,10 @@ window.BWJRender = (function () {
         </div>`;
     }
     const meta = `${item.materials} · ${item.dimensions} · Collection: ${collection} — ${item.description}`;
+    const rotation = Number(item.rotation) || 0;
     return `
-      <div class="masonry-item" data-category="${item.category}" data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${escapeHTML(meta)}" data-full="${item.image}">
-        <img src="${item.image}" alt="${escapeHTML(item.alt)}" loading="lazy">
+      <div class="masonry-item" data-category="${item.category}" data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${escapeHTML(meta)}" data-full="${item.image}" data-rotation="${rotation}">
+        ${thumbImgHTML(item.image, item.alt, rotation)}
         <div class="masonry-caption"><div class="cap-title">${escapeHTML(item.title)}</div><div class="cap-meta">${escapeHTML(item.materials)} · ${escapeHTML(collection)}</div>${tagHTML(item.tags)}</div>
       </div>`;
   }
@@ -148,10 +166,14 @@ window.BWJRender = (function () {
       featured.innerHTML = items.map((item) => {
         const img = item.diptych ? item.images[0].src : item.image;
         const alt = item.diptych ? item.images[0].alt : item.alt;
+        const rotation = Number(item.diptych ? item.images[0].rotation : item.rotation) || 0;
         const tag = (item.tags && item.tags[0]) || '';
+        // Feature cards have a fixed-size frame (object-fit: cover), so a
+        // plain transform is safe here — no risk of overlapping layout
+        // like the variable-height masonry grid or lightbox.
         return `
           <div class="feature-card">
-            <img src="${img}" alt="${escapeHTML(alt)}" loading="lazy">
+            <img src="${img}" alt="${escapeHTML(alt)}" loading="lazy"${rotation ? ` style="transform:rotate(${rotation}deg)"` : ''}>
             <div class="feature-card-label">
               <h4>${escapeHTML(item.title)}</h4>
               <span>${escapeHTML(item.materials)} · ${escapeHTML(tag)}</span>

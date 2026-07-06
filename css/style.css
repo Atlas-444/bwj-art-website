@@ -480,6 +480,25 @@ body.nav-open { overflow: hidden; }
   filter: grayscale(15%);
 }
 
+/* Wraps a masonry thumbnail's <img> when it has a 90/270deg CMS-set
+   rotation (for a photo that was shot sideways). A plain CSS rotate on
+   the <img> would visually swap its width/height without changing the
+   column space it reserves, which could leave a gap or overlap the
+   caption below — so script.js's fitGridRotations() sizes this wrapper
+   to the correct post-rotation box (same fix as the lightbox). */
+.thumb-rotate-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+/* Rotation is applied via a CSS variable (set by JS) rather than
+   overwriting `transform` directly, so the existing hover zoom effect
+   below can still combine with it instead of being clobbered. */
+.thumb-rotate-wrap img { transform: rotate(var(--thumb-rotation, 0deg)); }
+.masonry-item:hover .thumb-rotate-wrap img { transform: rotate(var(--thumb-rotation, 0deg)) scale(1.04); }
+
 .masonry-item:hover img {
   transform: scale(1.04);
   filter: grayscale(0%);
@@ -667,10 +686,23 @@ body.nav-open { overflow: hidden; }
   align-items: center;
 }
 
+/* Wraps the lightbox <img>. When an image is rotated 90/270deg, the CSS
+   rotate transform visually swaps its width/height but does NOT change
+   the space it reserves in the page's layout flow — without this wrapper,
+   a rotated image could visually overflow past its reserved space and
+   overlap the caption below. JS sizes this wrapper to the correct
+   post-rotation visual bounding box so the caption always sits where it
+   should. */
+.lightbox-img-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .lightbox img {
   max-height: 72vh;
   width: auto;
-  margin: 0 auto;
   border: 1px solid var(--slate);
   transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
   transform-origin: center center;
