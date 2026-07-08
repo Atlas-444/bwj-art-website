@@ -155,7 +155,6 @@ collections:
             max: 6
             default: 3
             hint: "The 'Recent Pieces' section on Home always shows the newest additions to the Portfolio automatically — this just controls how many. To feature a specific piece, add it to the Portfolio (it'll show up here once it's among the most recent)."
-          - { label: "Process Section Intro", name: "processIntro", widget: "text" }
           - label: "Process Steps"
             name: "processSteps"
             widget: "list"

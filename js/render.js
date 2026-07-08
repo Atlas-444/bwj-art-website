@@ -182,9 +182,6 @@ window.BWJRender = (function () {
       }).join('');
     }
 
-    const processIntro = root.querySelector('[data-field="process-intro"]');
-    if (processIntro) processIntro.textContent = home.processIntro;
-
     const processSteps = root.querySelector('[data-field="process-steps"]');
     if (processSteps) {
       processSteps.innerHTML = home.processSteps.map((s) => `

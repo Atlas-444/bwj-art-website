@@ -357,25 +357,6 @@ body.nav-open { overflow: hidden; }
   font-weight: 500;
 }
 
-.scroll-cue {
-  position: absolute;
-  bottom: var(--space-lg);
-  left: var(--space-md);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--slate);
-}
-.scroll-cue::after {
-  content: '';
-  width: 1px;
-  height: 40px;
-  background: var(--slate);
-}
-
 /* ==========================================================================
    Section scaffolding
    ========================================================================== */
@@ -408,6 +389,15 @@ body.nav-open { overflow: hidden; }
   max-width: 40ch;
   color: var(--neutral);
   font-size: 0.9rem;
+}
+
+/* Left accent bar for the home page artist statement quote. A separate
+   class (rather than styling .section-note directly) so the other
+   .section-note usages elsewhere (About page timeline/exhibit intros)
+   aren't affected. */
+.quote-bar {
+  border-left: 2px solid var(--slate);
+  padding-left: var(--space-sm);
 }
 
 /* Page header (interior pages) */
@@ -1177,7 +1167,6 @@ footer {
   .feature-card img { height: 300px; }
   .hero-meta { flex-direction: column; gap: 1.25rem; }
   .hero { padding-bottom: calc(var(--space-xl) + 2.5rem); }
-  .scroll-cue { display: none; }
 
   /* Tighten the lightbox's top-right control cluster (close/rotate x2/download)
      so all four fit without crowding on narrow phones. */
