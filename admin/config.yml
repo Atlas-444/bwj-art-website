@@ -126,6 +126,14 @@ collections:
               - { label: "Meta", name: "meta", widget: "string" }
               - { label: "Image", name: "image", widget: "image", choose_url: false }
               - { label: "Alt Text", name: "alt", widget: "string" }
+          - label: "Process Steps"
+            name: "processSteps"
+            widget: "list"
+            summary: "{{num}} — {{title}}"
+            fields:
+              - { label: "Number", name: "num", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
 
   - name: "home"
     label: "Home Page"
@@ -155,14 +163,6 @@ collections:
             max: 6
             default: 3
             hint: "The 'Recent Pieces' section on Home always shows the newest additions to the Portfolio automatically — this just controls how many. To feature a specific piece, add it to the Portfolio (it'll show up here once it's among the most recent)."
-          - label: "Process Steps"
-            name: "processSteps"
-            widget: "list"
-            summary: "{{num}} — {{title}}"
-            fields:
-              - { label: "Number", name: "num", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Text", name: "text", widget: "text" }
 
   - name: "contact"
     label: "Contact Page"

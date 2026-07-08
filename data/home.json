@@ -11,11 +11,5 @@
   "statementHeadingLine1": "Art is too",
   "statementHeadingLine2": "personal to explain.",
   "statementQuote": "The message I try to send does not have to be the one perceived, as long as it makes you think the work is successful. — BWJ",
-  "featuredCount": 3,
-  "processSteps": [
-    { "num": "01", "title": "Feel", "text": "Music, anxiety, restlessness, and the everyday feelings of youth supply the first spark." },
-    { "num": "02", "title": "Sketch", "text": "Fine liners, pencil, and quick studies work out the shape of a new composition." },
-    { "num": "03", "title": "Layer", "text": "Spray paint, acrylic, wire, and posca marker are built up across canvas, Masonite, and paper." },
-    { "num": "04", "title": "Let It Go", "text": "The message doesn't have to land the way it was meant to. Art is too personal for that." }
-  ]
+  "featuredCount": 3
 }

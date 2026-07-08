@@ -48,5 +48,11 @@
     { "title": "Opening Night", "meta": "Filmantiq, Ojo Vulgar, Paris — 18 Nov 2023", "image": "assets/img/exhibit-photo-1.jpg", "alt": "Guests at the Filmantiq exhibition opening" },
     { "title": "Viewing the Work", "meta": "Filmantiq, Ojo Vulgar, Paris — 18 Nov 2023", "image": "assets/img/exhibit-photo-2.jpg", "alt": "Guests viewing artwork on the gallery wall" },
     { "title": "Gallery Conversation", "meta": "Filmantiq, Ojo Vulgar, Paris — 18 Nov 2023", "image": "assets/img/exhibit-photo-3.jpg", "alt": "Gallery visitors in conversation near hung paintings" }
+  ],
+  "processSteps": [
+    { "num": "01", "title": "Feel", "text": "Music, anxiety, restlessness, and the everyday feelings of youth supply the first spark." },
+    { "num": "02", "title": "Sketch", "text": "Fine liners, pencil, and quick studies work out the shape of a new composition." },
+    { "num": "03", "title": "Layer", "text": "Spray paint, acrylic, wire, and posca marker are built up across canvas, Masonite, and paper." },
+    { "num": "04", "title": "Let It Go", "text": "The message doesn't have to land the way it was meant to. Art is too personal for that." }
   ]
 }

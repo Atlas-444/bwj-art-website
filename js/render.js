@@ -182,15 +182,6 @@ window.BWJRender = (function () {
       }).join('');
     }
 
-    const processSteps = root.querySelector('[data-field="process-steps"]');
-    if (processSteps) {
-      processSteps.innerHTML = home.processSteps.map((s) => `
-        <div class="process-step">
-          <span class="step-num">${escapeHTML(s.num)}</span>
-          <h4>${escapeHTML(s.title)}</h4>
-          <p>${escapeHTML(s.text)}</p>
-        </div>`).join('');
-    }
   }
 
   async function renderAbout() {
@@ -241,6 +232,16 @@ window.BWJRender = (function () {
       exhibitGallery.innerHTML = about.exhibitGallery.map((e) => `
         <div class="masonry-item" data-lightbox data-title="${escapeHTML(e.title)}" data-meta="${escapeHTML(e.meta)}" data-full="${e.image}">
           <img src="${e.image}" alt="${escapeHTML(e.alt)}">
+        </div>`).join('');
+    }
+
+    const processSteps = root.querySelector('[data-field="process-steps"]');
+    if (processSteps) {
+      processSteps.innerHTML = about.processSteps.map((s) => `
+        <div class="process-step">
+          <span class="step-num">${escapeHTML(s.num)}</span>
+          <h4>${escapeHTML(s.title)}</h4>
+          <p>${escapeHTML(s.text)}</p>
         </div>`).join('');
     }
   }
