@@ -302,14 +302,6 @@ body.nav-open { overflow: hidden; }
   border-bottom: 1px solid var(--line);
 }
 
-.hero-tag {
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--slate);
-  margin-bottom: var(--space-md);
-}
-
 .hero h1 {
   font-size: clamp(2.6rem, 8vw, 6.5rem);
   line-height: 1.02;
@@ -318,6 +310,9 @@ body.nav-open { overflow: hidden; }
   text-transform: uppercase;
   color: var(--neutral);
   max-width: 18ch;
+  /* Right-aligned so the end of each line ("NOT" / "SURVIVE.") shares the
+     same right edge, instead of moving the block itself. */
+  text-align: right;
 }
 
 .hero h1 span { color: var(--slate); }
@@ -325,7 +320,7 @@ body.nav-open { overflow: hidden; }
 .hero-sub {
   margin-top: var(--space-md);
   max-width: 46ch;
-  color: var(--neutral-soft);
+  color: var(--neutral);
   font-size: 1.05rem;
 }
 
@@ -398,11 +393,12 @@ body.nav-open { overflow: hidden; }
   text-transform: uppercase;
   letter-spacing: -0.01em;
   margin-top: 0.75rem;
+  color: var(--slate-dark);
 }
 
 .section-note {
   max-width: 40ch;
-  color: var(--slate-dark);
+  color: var(--neutral);
   font-size: 0.9rem;
 }
 
@@ -420,7 +416,7 @@ body.nav-open { overflow: hidden; }
 }
 .page-header p {
   max-width: 55ch;
-  color: var(--slate-dark);
+  color: var(--neutral);
   margin-top: var(--space-sm);
   font-size: 1rem;
 }
@@ -591,10 +587,11 @@ body.nav-open { overflow: hidden; }
 .exhibit-row h4 {
   font-size: 1.1rem;
   text-transform: uppercase;
+  color: var(--slate-dark);
 }
 .exhibit-row p {
   font-size: 0.88rem;
-  color: var(--slate-dark);
+  color: var(--neutral);
   margin-top: 0.2rem;
 }
 .exhibit-row .ex-tag {
@@ -623,7 +620,7 @@ body.nav-open { overflow: hidden; }
   margin: var(--space-lg) 0;
   font-size: 1.15rem;
   font-style: normal;
-  color: var(--neutral-soft);
+  color: var(--neutral);
   max-width: 64ch;
 }
 .quote-block cite {
@@ -777,7 +774,7 @@ body.nav-open { overflow: hidden; }
 
 .about-copy p {
   margin-bottom: 1.25rem;
-  color: var(--neutral-soft);
+  color: var(--neutral);
   max-width: 62ch;
 }
 .about-copy p:first-of-type {
@@ -825,9 +822,10 @@ body.nav-open { overflow: hidden; }
   font-size: 1.05rem;
   text-transform: uppercase;
   margin-bottom: 0.3rem;
+  color: var(--slate-dark);
 }
 .timeline-row p {
-  color: var(--slate-dark);
+  color: var(--neutral);
   font-size: 0.92rem;
   max-width: 60ch;
 }
@@ -880,7 +878,7 @@ body.nav-open { overflow: hidden; }
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--slate);
+  color: var(--slate-dark);
   margin-bottom: 0.75rem;
   margin-top: var(--space-md);
 }
@@ -940,6 +938,7 @@ body.nav-open { overflow: hidden; }
 .feature-card-label h4 {
   font-size: 0.95rem;
   text-transform: uppercase;
+  color: var(--slate-dark);
 }
 .feature-card-label span {
   font-size: 0.7rem;
@@ -965,10 +964,11 @@ body.nav-open { overflow: hidden; }
   font-size: 1.1rem;
   text-transform: uppercase;
   margin: 0.5rem 0 0.5rem;
+  color: var(--slate-dark);
 }
 .process-step p {
   font-size: 0.88rem;
-  color: var(--slate-dark);
+  color: var(--neutral);
 }
 
 /* CTA band */
@@ -1010,7 +1010,7 @@ footer {
 
 .footer-brand .logo { margin-bottom: 1rem; }
 .footer-brand p {
-  color: var(--slate-dark);
+  color: var(--neutral);
   font-size: 0.9rem;
   max-width: 32ch;
 }

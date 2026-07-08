@@ -133,12 +133,9 @@ window.BWJRender = (function () {
     if (!root) return;
     const [home, portfolio] = await Promise.all([fetchJSON('data/home.json'), getPortfolio()]);
 
-    const heroTag = root.querySelector('[data-field="hero-tag"]');
-    if (heroTag) heroTag.textContent = home.heroTag;
-
     const heroHeading = root.querySelector('[data-field="hero-heading"]');
     if (heroHeading) {
-      heroHeading.innerHTML = `${escapeHTML(home.heroHeadingLine1)}<br>${escapeHTML(home.heroHeadingLine2)} <span>${escapeHTML(home.heroHeadingEmphasis)}</span>`;
+      heroHeading.innerHTML = `<span>${escapeHTML(home.heroHeadingEmphasis)}</span> ${escapeHTML(home.heroHeadingLine1Rest)}<br>${escapeHTML(home.heroHeadingLine2)}`;
     }
 
     const heroSub = root.querySelector('[data-field="hero-sub"]');

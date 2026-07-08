@@ -134,10 +134,9 @@ collections:
         label: "Home Content"
         file: "data/home.json"
         fields:
-          - { label: "Hero Tag (small line above heading)", name: "heroTag", widget: "string" }
-          - { label: "Hero Heading — Line 1", name: "heroHeadingLine1", widget: "string" }
+          - { label: "Hero Heading — Emphasis Word (colored, starts line 1)", name: "heroHeadingEmphasis", widget: "string" }
+          - { label: "Hero Heading — Rest of Line 1", name: "heroHeadingLine1Rest", widget: "string" }
           - { label: "Hero Heading — Line 2", name: "heroHeadingLine2", widget: "string" }
-          - { label: "Hero Heading — Emphasis Word (colored)", name: "heroHeadingEmphasis", widget: "string" }
           - { label: "Hero Subtext", name: "heroSub", widget: "text" }
           - label: "Hero Meta Rows (Discipline / Based / Commissions)"
             name: "heroMeta"
