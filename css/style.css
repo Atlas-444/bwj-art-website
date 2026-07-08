@@ -913,6 +913,11 @@ body.nav-open { overflow: hidden; }
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-sm);
 }
+.view-all-row {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
 .feature-card {
   border: 1px solid var(--line);
   overflow: hidden;
