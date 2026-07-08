@@ -135,7 +135,10 @@ window.BWJRender = (function () {
 
     const heroHeading = root.querySelector('[data-field="hero-heading"]');
     if (heroHeading) {
-      heroHeading.innerHTML = `<span>${escapeHTML(home.heroHeadingEmphasis)}</span> ${escapeHTML(home.heroHeadingLine1Rest)}<br>${escapeHTML(home.heroHeadingLine2)}`;
+      // Line 1 (emphasis word + rest) is a flex row spanning the same width
+      // as line 2, so its right edge lines up with line 2's — see
+      // .hero-line1 in style.css.
+      heroHeading.innerHTML = `<span class="hero-line hero-line1"><span class="hero-accent">${escapeHTML(home.heroHeadingEmphasis)}</span><span>${escapeHTML(home.heroHeadingLine1Rest)}</span></span><span class="hero-line hero-line2">${escapeHTML(home.heroHeadingLine2)}</span>`;
     }
 
     const heroSub = root.querySelector('[data-field="hero-sub"]');

@@ -309,13 +309,21 @@ body.nav-open { overflow: hidden; }
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--neutral);
-  max-width: 18ch;
-  /* Right-aligned so the end of each line ("NOT" / "SURVIVE.") shares the
-     same right edge, instead of moving the block itself. */
-  text-align: right;
+  /* Shrink-wraps to its widest line (line 2) so line 1's flex row (below)
+     spans that exact same width — that's what makes "NOT" line up with
+     the end of "SURVIVE" without moving the whole block off the left
+     edge of the page. */
+  width: fit-content;
+  max-width: 100%;
 }
 
-.hero h1 span { color: var(--slate); }
+.hero-line { display: block; }
+.hero-line1 {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+.hero-accent { color: var(--slate); }
 
 .hero-sub {
   margin-top: var(--space-md);
