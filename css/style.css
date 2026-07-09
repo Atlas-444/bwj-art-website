@@ -400,6 +400,20 @@ body.nav-open { overflow: hidden; }
   padding-left: var(--space-sm);
 }
 
+/* Exhibits section (About page): keeps the gallery/venue address sitting
+   directly beside the exhibit title instead of off to the side as a
+   separate block. */
+.exhibit-heading-row {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  width: 100%;
+}
+.exhibit-location {
+  margin: 0;
+}
+
 /* Page header (interior pages) */
 .page-header {
   padding: calc(var(--space-xl) + 4rem) 0 var(--space-lg);
@@ -948,6 +962,70 @@ body.nav-open { overflow: hidden; }
   color: var(--slate);
 }
 
+/* Home "spotlight" — single rotating highlighted image, replacing the old
+   3-up feature strip. Only one .spotlight-item is ever visible at a time
+   (script.js toggles .is-active on a timer); clicking it opens the shared
+   lightbox, same as a portfolio grid item. */
+.spotlight {
+  position: relative;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: pointer;
+}
+.spotlight-item {
+  display: none;
+}
+.spotlight-item.is-active {
+  display: block;
+}
+.spotlight-item img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+.spotlight-item:hover img { transform: scale(1.03); filter: grayscale(0%); }
+.spotlight-caption {
+  padding: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.spotlight-caption h4 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  color: var(--slate-dark);
+}
+.spotlight-caption span {
+  font-size: 0.7rem;
+  color: var(--slate);
+}
+.spotlight-dots {
+  position: absolute;
+  bottom: calc(1rem + 48px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+.spotlight-dots .dot {
+  pointer-events: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--white);
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+}
+.spotlight-dots .dot.is-active {
+  background: var(--white);
+}
+
 /* Process strip on home */
 .process-row {
   display: grid;
@@ -1113,6 +1191,7 @@ footer {
   .diptych-imgs > div:hover img,
   .feature-card:hover img { transform: none; filter: grayscale(15%); }
   .feature-card-label { position: static; }
+  .spotlight-item:hover img { transform: none; filter: grayscale(15%); }
   .btn:hover { background: none; color: var(--neutral); }
   .btn-solid:hover { background: var(--neutral); color: var(--white); }
   .cta-band .btn:hover { background: none; color: var(--white); }
@@ -1170,6 +1249,8 @@ footer {
   .masonry { column-count: 1; }
   .exhibit-gallery { grid-template-columns: 1fr; }
   .feature-card img { height: 300px; }
+  .spotlight-item img { height: 300px; }
+  .spotlight-dots { bottom: calc(1rem + 40px); }
   .hero-meta { flex-direction: column; gap: 1.25rem; }
   .hero { padding-bottom: calc(var(--space-xl) + 2.5rem); }
 

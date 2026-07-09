@@ -284,6 +284,63 @@ window.initSiteInteractions = function () {
     window.closeLightbox = function () {};
   }
 
+  /* ---------- Home spotlight (rotating featured image) ----------
+     A single highlighted image that cycles through the most recent
+     portfolio pieces every 5s. Clicking it opens the same lightbox used
+     elsewhere on the site (it's just another [data-lightbox] item), and
+     rotation pauses for as long as the lightbox stays open so the image
+     doesn't change out from under someone mid-view. */
+  const spotlight = document.querySelector('.spotlight');
+  if (spotlight) {
+    const spotItems = Array.from(spotlight.querySelectorAll('.spotlight-item'));
+    const spotDots = Array.from(spotlight.querySelectorAll('.spotlight-dots .dot'));
+    let spotActive = 0;
+    let spotTimer = null;
+
+    function showSpot(i) {
+      spotActive = (i + spotItems.length) % spotItems.length;
+      spotItems.forEach((el, idx) => el.classList.toggle('is-active', idx === spotActive));
+      spotDots.forEach((d, idx) => d.classList.toggle('is-active', idx === spotActive));
+    }
+
+    function startSpot() {
+      stopSpot();
+      if (spotItems.length > 1) {
+        spotTimer = setInterval(() => showSpot(spotActive + 1), 5000);
+      }
+    }
+
+    function stopSpot() {
+      if (spotTimer) clearInterval(spotTimer);
+      spotTimer = null;
+    }
+
+    spotDots.forEach((dot, idx) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showSpot(idx);
+        startSpot();
+      });
+    });
+
+    // Pause while the lightbox this item opens is on screen; resume once
+    // it's closed by any of the ways a visitor can close it.
+    spotItems.forEach((item) => item.addEventListener('click', stopSpot));
+    const spotLightbox = document.querySelector('.lightbox');
+    if (spotLightbox) {
+      const closeBtn = spotLightbox.querySelector('.lightbox-close');
+      if (closeBtn) closeBtn.addEventListener('click', startSpot);
+      spotLightbox.addEventListener('click', (e) => {
+        if (e.target === spotLightbox) startSpot();
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') startSpot();
+    });
+
+    startSpot();
+  }
+
   /* ---------- Grid thumbnail rotation (CMS-set, for sideways photos) ----------
      Mirrors the lightbox's rotation fix: a wrapper reserves the correct
      post-rotation visual box (based on the column's actual rendered
@@ -360,13 +417,16 @@ window.initSiteInteractions = function () {
 
       if (submitBtn) submitBtn.disabled = true;
 
-      fetch('/', {
+      // Post to the current page (rather than a hardcoded "/") so the
+      // submission always targets a real, existing static asset — the
+      // safest target for Netlify's form-handling middleware to intercept.
+      fetch(window.location.pathname || '/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: data
       })
         .then((res) => {
-          if (!res.ok) throw new Error('Form submission failed: ' + res.status);
+          if (!res.ok) throw new Error('Form submission failed: ' + res.status + ' ' + res.statusText);
           contactForm.reset();
           if (confirmation) {
             confirmation.classList.add('is-visible');
@@ -374,6 +434,8 @@ window.initSiteInteractions = function () {
           }
         })
         .catch((err) => {
+          // Logged with status/text above so this is diagnosable from the
+          // browser console if it happens again.
           console.error('[BWJ] contact form submission failed', err);
           if (errorMsg) {
             errorMsg.classList.add('is-visible');

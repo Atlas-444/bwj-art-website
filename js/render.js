@@ -160,26 +160,33 @@ window.BWJRender = (function () {
       // "Recent Pieces" is fully automatic: it's always the last N items in
       // portfolio.json, reversed so the newest addition shows first. New
       // pieces added through the CMS get appended to the end of the list,
-      // so this needs no manual curation.
+      // so this needs no manual curation — the spotlight always reflects
+      // whatever is currently newest.
       const count = home.featuredCount || 3;
       const items = portfolio.items.slice(-count).reverse();
-      featured.innerHTML = items.map((item) => {
+      const slides = items.map((item, i) => {
         const img = item.diptych ? item.images[0].src : item.image;
         const alt = item.diptych ? item.images[0].alt : item.alt;
         const rotation = Number(item.diptych ? item.images[0].rotation : item.rotation) || 0;
         const tag = (item.tags && item.tags[0]) || '';
-        // Feature cards have a fixed-size frame (object-fit: cover), so a
-        // plain transform is safe here — no risk of overlapping layout
-        // like the variable-height masonry grid or lightbox.
+        const meta = `${escapeHTML(item.materials)} · ${escapeHTML(tag)}`;
+        // A [data-lightbox] item, same as the portfolio grid — clicking it
+        // opens the shared lightbox. Only the active slide is visible at a
+        // time (script.js swaps `.is-active` on a 5s timer and pauses it
+        // while the lightbox is open).
         return `
-          <div class="feature-card">
+          <div class="spotlight-item${i === 0 ? ' is-active' : ''}" data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${meta}" data-full="${img}" data-rotation="${rotation}">
             <img src="${img}" alt="${escapeHTML(alt)}" loading="lazy"${rotation ? ` style="transform:rotate(${rotation}deg)"` : ''}>
-            <div class="feature-card-label">
+            <div class="spotlight-caption">
               <h4>${escapeHTML(item.title)}</h4>
-              <span>${escapeHTML(item.materials)} · ${escapeHTML(tag)}</span>
+              <span>${meta}</span>
             </div>
           </div>`;
       }).join('');
+      const dots = items.length > 1
+        ? `<div class="spotlight-dots">${items.map((_, i) => `<button class="dot${i === 0 ? ' is-active' : ''}" aria-label="Show piece ${i + 1}"></button>`).join('')}</div>`
+        : '';
+      featured.innerHTML = slides + dots;
     }
 
   }
@@ -187,7 +194,7 @@ window.BWJRender = (function () {
   async function renderAbout() {
     const root = document.getElementById('about-root');
     if (!root) return;
-    const about = await fetchJSON('data/about.json');
+    const [about, portfolio] = await Promise.all([fetchJSON('data/about.json'), getPortfolio()]);
 
     const intro = root.querySelector('[data-field="page-intro"]');
     if (intro) intro.textContent = about.pageIntro;
@@ -203,7 +210,14 @@ window.BWJRender = (function () {
 
     const stats = root.querySelector('[data-field="stats"]');
     if (stats) {
-      stats.innerHTML = about.stats.map((s) => `<div><strong>${escapeHTML(s.value)}</strong><span>${escapeHTML(s.label)}</span></div>`).join('');
+      // "Original Works" is always the live portfolio count rather than a
+      // manually-maintained number, so it can't drift out of date as
+      // pieces are added or removed through the CMS.
+      stats.innerHTML = about.stats.map((s) => {
+        const isWorksCount = /original works/i.test(s.label);
+        const value = isWorksCount ? portfolio.items.length : s.value;
+        return `<div><span>${escapeHTML(s.label)}</span><strong>${escapeHTML(String(value))}</strong></div>`;
+      }).join('');
     }
 
     const timelineIntro = root.querySelector('[data-field="timeline-intro"]');

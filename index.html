@@ -88,27 +88,32 @@
         </div>
       </div>
 
-      <div class="feature-strip fade-in" data-field="featured-work">
-        <div class="feature-card">
+      <div class="spotlight fade-in" data-field="featured-work">
+        <div class="spotlight-item is-active" data-lightbox data-title="Ho9e" data-meta="Spray-Paint · Sold, Filmantiq 2023" data-full="assets/img/hope.jpg" data-rotation="0">
           <img src="assets/img/hope.jpg" alt="Ho9e — spray paint hand and butterfly on teal canvas" loading="lazy">
-          <div class="feature-card-label">
+          <div class="spotlight-caption">
             <h4>Ho9e</h4>
             <span>Spray-Paint · Sold, Filmantiq 2023</span>
           </div>
         </div>
-        <div class="feature-card">
+        <div class="spotlight-item" data-lightbox data-title="Splinters &amp; Beams" data-meta="Acrylic + Spray on Masonite" data-full="assets/img/splinters-beams.jpg" data-rotation="0">
           <img src="assets/img/splinters-beams.jpg" alt="Splinters & Beams — glowing hand pointing on grey panel" loading="lazy">
-          <div class="feature-card-label">
+          <div class="spotlight-caption">
             <h4>Splinters &amp; Beams</h4>
             <span>Acrylic + Spray on Masonite</span>
           </div>
         </div>
-        <div class="feature-card">
+        <div class="spotlight-item" data-lightbox data-title="IT'S Yours" data-meta="Acrylic + Spray on Canvas" data-full="assets/img/its-yours.jpg" data-rotation="0">
           <img src="assets/img/its-yours.jpg" alt="IT'S Yours — heart painted over a red canvas" loading="lazy">
-          <div class="feature-card-label">
+          <div class="spotlight-caption">
             <h4>IT'S Yours</h4>
             <span>Acrylic + Spray on Canvas</span>
           </div>
+        </div>
+        <div class="spotlight-dots">
+          <button class="dot is-active" aria-label="Show piece 1"></button>
+          <button class="dot" aria-label="Show piece 2"></button>
+          <button class="dot" aria-label="Show piece 3"></button>
         </div>
       </div>
 
@@ -128,6 +133,25 @@
   </section>
 
 </main>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox">
+  <button class="lightbox-download" aria-label="Download watermarked copy">⬇</button>
+  <button class="lightbox-rotate-ccw" aria-label="Rotate image counter-clockwise">⟲</button>
+  <button class="lightbox-rotate" aria-label="Rotate image clockwise">⟳</button>
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <button class="lightbox-prev" aria-label="Previous">←</button>
+  <div class="lightbox-inner">
+    <div class="lightbox-img-wrap">
+      <img src="" alt="">
+    </div>
+    <div class="lightbox-caption">
+      <div class="cap-title"></div>
+      <div class="cap-meta"></div>
+    </div>
+  </div>
+  <button class="lightbox-next" aria-label="Next">→</button>
+</div>
 
 <!-- ============ FOOTER ============ -->
 <footer>

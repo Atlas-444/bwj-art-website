@@ -103,8 +103,9 @@ collections:
           - label: "Stats Row"
             name: "stats"
             widget: "list"
+            hint: "The 'Original Works' entry's number is calculated automatically from the Portfolio count — whatever Value you enter for it here is ignored on the live site."
             fields:
-              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Value", name: "value", widget: "string", hint: "Ignored for the 'Original Works' row — auto-calculated instead." }
               - { label: "Label", name: "label", widget: "string" }
           - { label: "Timeline Section Intro", name: "timelineIntro", widget: "text" }
           - label: "Timeline"
