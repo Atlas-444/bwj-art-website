@@ -92,7 +92,6 @@ collections:
         label: "About Content"
         file: "data/about.json"
         fields:
-          - { label: "Page Intro (under the 'About' heading)", name: "pageIntro", widget: "text" }
           - { label: "Portrait Image", name: "portrait", widget: "image", choose_url: false }
           - label: "Bio Paragraphs"
             name: "bioParagraphs"

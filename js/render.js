@@ -196,9 +196,6 @@ window.BWJRender = (function () {
     if (!root) return;
     const [about, portfolio] = await Promise.all([fetchJSON('data/about.json'), getPortfolio()]);
 
-    const intro = root.querySelector('[data-field="page-intro"]');
-    if (intro) intro.textContent = about.pageIntro;
-
     const portrait = root.querySelector('[data-field="portrait"]');
     if (portrait) portrait.setAttribute('src', about.portrait);
 

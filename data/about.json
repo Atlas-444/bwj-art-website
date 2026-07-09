@@ -1,5 +1,4 @@
 {
-  "pageIntro": "No formal training, no gallery pedigree.",
   "portrait": "assets/img/self-portrait-cut.jpg",
   "bioParagraphs": [
     "I'm BWJ. Autistic Dane, based in Copenhagen, though the work still carries a few years in Pau, in the south of France.",
@@ -15,11 +14,6 @@
   ],
   "timelineIntro": "From a CAS project in the IB program to a running archive of exhibited, published, and sold work.",
   "timeline": [
-    {
-      "year": "Since 2021",
-      "title": "Expanding the Practice",
-      "text": "Sculpture and other three-dimensional work have entered the practice alongside painting and paper."
-    },
     {
       "year": "Through Sep 2025",
       "title": "Galleri X",

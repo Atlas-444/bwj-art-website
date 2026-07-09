@@ -968,12 +968,19 @@ body.nav-open { overflow: hidden; }
    lightbox, same as a portfolio grid item. */
 .spotlight {
   position: relative;
-  border: 1px solid var(--line);
-  overflow: hidden;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 .spotlight-item {
   display: none;
+  /* Narrower than it is tall (a portrait-ish frame) rather than the old
+     full-width strip — the height stays fixed, only the width shrinks,
+     and the card is centered in the section. */
+  width: 360px;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: pointer;
 }
 .spotlight-item.is-active {
   display: block;
@@ -1249,6 +1256,7 @@ footer {
   .masonry { column-count: 1; }
   .exhibit-gallery { grid-template-columns: 1fr; }
   .feature-card img { height: 300px; }
+  .spotlight-item { width: 270px; }
   .spotlight-item img { height: 300px; }
   .spotlight-dots { bottom: calc(1rem + 40px); }
   .hero-meta { flex-direction: column; gap: 1.25rem; }
