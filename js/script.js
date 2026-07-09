@@ -297,10 +297,20 @@ window.initSiteInteractions = function () {
     let spotActive = 0;
     let spotTimer = null;
 
+    // Items are stacked with position:absolute and cross-fade via opacity
+    // (see .spotlight-item in style.css), so the container's own height is
+    // synced here to whichever item is currently active — otherwise a
+    // position:absolute-only stack would collapse the section to nothing.
+    function syncSpotHeight() {
+      const active = spotItems[spotActive];
+      if (active) spotlight.style.height = active.offsetHeight + 'px';
+    }
+
     function showSpot(i) {
       spotActive = (i + spotItems.length) % spotItems.length;
       spotItems.forEach((el, idx) => el.classList.toggle('is-active', idx === spotActive));
       spotDots.forEach((d, idx) => d.classList.toggle('is-active', idx === spotActive));
+      syncSpotHeight();
     }
 
     function startSpot() {
@@ -338,6 +348,8 @@ window.initSiteInteractions = function () {
       if (e.key === 'Escape') startSpot();
     });
 
+    window.addEventListener('resize', syncSpotHeight);
+    syncSpotHeight();
     startSpot();
   }
 

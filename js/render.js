@@ -120,10 +120,10 @@ window.BWJRender = (function () {
     }
 
     if (filtersRoot) {
-      const buttons = ['<button class="active" data-filter="all">All Work</button>']
-        .concat((collections.collections || []).map((c) =>
-          `<button data-filter="${escapeHTML(c.slug)}">${escapeHTML(c.label)}</button>`
-        ));
+      // Collections in CMS order (chronological), with "All Work" last.
+      const buttons = (collections.collections || []).map((c) =>
+        `<button data-filter="${escapeHTML(c.slug)}">${escapeHTML(c.label)}</button>`
+      ).concat(['<button class="active" data-filter="all">All Work</button>']);
       filtersRoot.innerHTML = buttons.join('\n');
     }
   }
@@ -135,10 +135,9 @@ window.BWJRender = (function () {
 
     const heroHeading = root.querySelector('[data-field="hero-heading"]');
     if (heroHeading) {
-      // Line 1 (emphasis word + rest) is a flex row spanning the same width
-      // as line 2, so its right edge lines up with line 2's — see
-      // .hero-line1 in style.css.
-      heroHeading.innerHTML = `<span class="hero-line hero-line1"><span class="hero-accent">${escapeHTML(home.heroHeadingEmphasis)}</span><span>${escapeHTML(home.heroHeadingLine1Rest)}</span></span><span class="hero-line hero-line2">${escapeHTML(home.heroHeadingLine2)}</span>`;
+      // Plain two-line heading, left-aligned: emphasis word + rest on line
+      // one, second line below it.
+      heroHeading.innerHTML = `<span class="hero-line"><span class="hero-accent">${escapeHTML(home.heroHeadingEmphasis)}</span> ${escapeHTML(home.heroHeadingLine1Rest)}</span><span class="hero-line">${escapeHTML(home.heroHeadingLine2)}</span>`;
     }
 
     const heroSub = root.querySelector('[data-field="hero-sub"]');
@@ -262,17 +261,11 @@ window.BWJRender = (function () {
     if (!root) return;
     const contact = await fetchJSON('data/contact.json');
 
-    const intro = root.querySelector('[data-field="page-intro"]');
-    if (intro) intro.textContent = contact.pageIntro;
-
     const infoBlock = root.querySelector('[data-field="info-block"]');
     if (infoBlock) {
       infoBlock.innerHTML = `
         <h3>Email</h3>
         <a href="mailto:${escapeHTML(contact.email)}">${escapeHTML(contact.email)}</a>
-
-        <h3>Based</h3>
-        <p>${escapeHTML(contact.basedLine1)}<br>${escapeHTML(contact.basedLine2)}</p>
 
         <h3>Commissions</h3>
         <p>${escapeHTML(contact.commissions)}</p>

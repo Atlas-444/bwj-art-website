@@ -1,6 +1,6 @@
 {
   "collections": [
-    { "slug": "life", "label": "Life" },
-    { "slug": "hictb", "label": "How It Came To Be" }
+    { "slug": "hictb", "label": "How It Came To Be" },
+    { "slug": "life", "label": "Life" }
   ]
 }

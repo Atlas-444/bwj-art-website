@@ -309,20 +309,9 @@ body.nav-open { overflow: hidden; }
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--neutral);
-  /* Shrink-wraps to its widest line (line 2) so line 1's flex row (below)
-     spans that exact same width — that's what makes "NOT" line up with
-     the end of "SURVIVE" without moving the whole block off the left
-     edge of the page. */
-  width: fit-content;
-  max-width: 100%;
 }
 
 .hero-line { display: block; }
-.hero-line1 {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5em;
-}
 .hero-accent { color: var(--slate); }
 
 .hero-sub {
@@ -649,6 +638,7 @@ body.nav-open { overflow: hidden; }
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
+  margin-top: var(--space-sm);
   margin-bottom: var(--space-lg);
 }
 .gallery-filters button {
@@ -968,11 +958,19 @@ body.nav-open { overflow: hidden; }
    lightbox, same as a portfolio grid item. */
 .spotlight {
   position: relative;
-  display: flex;
-  justify-content: center;
+  /* Height is synced by script.js to match whichever item is active —
+     needed because the items are stacked with position:absolute (so they
+     can cross-fade into one another) and would otherwise collapse the
+     container to zero height. */
 }
 .spotlight-item {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
   /* Narrower than it is tall (a portrait-ish frame) rather than the old
      full-width strip — the height stays fixed, only the width shrinks,
      and the card is centered in the section. */
@@ -983,7 +981,9 @@ body.nav-open { overflow: hidden; }
   cursor: pointer;
 }
 .spotlight-item.is-active {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
 }
 .spotlight-item img {
   width: 100%;

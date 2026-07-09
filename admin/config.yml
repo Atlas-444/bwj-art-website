@@ -171,10 +171,7 @@ collections:
         label: "Contact Content"
         file: "data/contact.json"
         fields:
-          - { label: "Page Intro", name: "pageIntro", widget: "text" }
           - { label: "Email", name: "email", widget: "string" }
-          - { label: "Based — Line 1", name: "basedLine1", widget: "string" }
-          - { label: "Based — Line 2", name: "basedLine2", widget: "string" }
           - { label: "Commissions Text", name: "commissions", widget: "text" }
           - { label: "Response Time", name: "responseTime", widget: "text" }
           - { label: "Instagram Handle (no @)", name: "instagramHandle", widget: "string" }
