@@ -209,11 +209,7 @@
         <h5 data-bind="newsletter-heading">Join the List</h5>
         <p data-bind="newsletter-blurb">New pieces and updates, straight to your inbox. No spam.</p>
       </div>
-      <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="nl-bot-field">
-        <input type="hidden" name="form-name" value="newsletter">
-        <p class="hidden-field" style="position:absolute; left:-9999px;">
-          <label>Don't fill this out if you're human: <input name="nl-bot-field"></label>
-        </p>
+      <form class="newsletter-form" action="https://formspree.io/f/mljrjdnr" method="POST">
         <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
         <button type="submit" class="btn btn-solid">Sign Up</button>
         <span class="newsletter-confirmation">Thanks — you're on the list.</span>

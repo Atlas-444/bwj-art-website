@@ -417,7 +417,7 @@ window.initSiteInteractions = function () {
     if (e.target.tagName === 'IMG') e.preventDefault();
   });
 
-  /* ---------- Contact form (submits to Netlify Forms) ---------- */
+  /* ---------- Contact form (submits to Formspree) ---------- */
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -425,16 +425,17 @@ window.initSiteInteractions = function () {
       const confirmation = document.querySelector('.form-confirmation');
       const errorMsg = document.querySelector('.form-error');
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const data = new URLSearchParams(new FormData(contactForm)).toString();
+      const data = new FormData(contactForm);
 
       if (submitBtn) submitBtn.disabled = true;
 
-      // Post to the current page (rather than a hardcoded "/") so the
-      // submission always targets a real, existing static asset — the
-      // safest target for Netlify's form-handling middleware to intercept.
-      fetch(window.location.pathname || '/', {
+      // Formspree's AJAX pattern: POST the FormData as-is (multipart, so no
+      // Content-Type header — the browser sets that automatically) to the
+      // form's own endpoint, with Accept: application/json so it responds
+      // with JSON instead of redirecting to Formspree's own thank-you page.
+      fetch(contactForm.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Accept': 'application/json' },
         body: data
       })
         .then((res) => {
@@ -460,20 +461,20 @@ window.initSiteInteractions = function () {
     });
   }
 
-  /* ---------- Newsletter signup (footer, every page — submits to Netlify Forms) ---------- */
+  /* ---------- Newsletter signup (footer, every page — submits to Formspree) ---------- */
   document.querySelectorAll('.newsletter-form').forEach((form) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const confirmation = form.querySelector('.newsletter-confirmation');
       const errorMsg = form.querySelector('.newsletter-error');
       const submitBtn = form.querySelector('button[type="submit"]');
-      const data = new URLSearchParams(new FormData(form)).toString();
+      const data = new FormData(form);
 
       if (submitBtn) submitBtn.disabled = true;
 
-      fetch(window.location.pathname || '/', {
+      fetch(form.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Accept': 'application/json' },
         body: data
       })
         .then((res) => {
