@@ -35,7 +35,9 @@ window.initSiteInteractions = function () {
 
   if (navOverlay) navOverlay.addEventListener('click', closeNav);
 
-  document.querySelectorAll('.nav-links a').forEach(link => {
+  // Closes the slide-out panel for any link inside it — the main nav
+  // list as well as the Instagram/Contact/Newsletter links in its footer.
+  document.querySelectorAll('.nav-panel a').forEach(link => {
     link.addEventListener('click', () => closeNav());
   });
 
@@ -284,74 +286,6 @@ window.initSiteInteractions = function () {
     window.closeLightbox = function () {};
   }
 
-  /* ---------- Home spotlight (rotating featured image) ----------
-     A single highlighted image that cycles through the most recent
-     portfolio pieces every 5s. Clicking it opens the same lightbox used
-     elsewhere on the site (it's just another [data-lightbox] item), and
-     rotation pauses for as long as the lightbox stays open so the image
-     doesn't change out from under someone mid-view. */
-  const spotlight = document.querySelector('.spotlight');
-  if (spotlight) {
-    const spotItems = Array.from(spotlight.querySelectorAll('.spotlight-item'));
-    const spotDots = Array.from(spotlight.querySelectorAll('.spotlight-dots .dot'));
-    let spotActive = 0;
-    let spotTimer = null;
-
-    // Items are stacked with position:absolute and cross-fade via opacity
-    // (see .spotlight-item in style.css), so the container's own height is
-    // synced here to whichever item is currently active — otherwise a
-    // position:absolute-only stack would collapse the section to nothing.
-    function syncSpotHeight() {
-      const active = spotItems[spotActive];
-      if (active) spotlight.style.height = active.offsetHeight + 'px';
-    }
-
-    function showSpot(i) {
-      spotActive = (i + spotItems.length) % spotItems.length;
-      spotItems.forEach((el, idx) => el.classList.toggle('is-active', idx === spotActive));
-      spotDots.forEach((d, idx) => d.classList.toggle('is-active', idx === spotActive));
-      syncSpotHeight();
-    }
-
-    function startSpot() {
-      stopSpot();
-      if (spotItems.length > 1) {
-        spotTimer = setInterval(() => showSpot(spotActive + 1), 5000);
-      }
-    }
-
-    function stopSpot() {
-      if (spotTimer) clearInterval(spotTimer);
-      spotTimer = null;
-    }
-
-    spotDots.forEach((dot, idx) => {
-      dot.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showSpot(idx);
-        startSpot();
-      });
-    });
-
-    // Pause while the lightbox this item opens is on screen; resume once
-    // it's closed by any of the ways a visitor can close it.
-    spotItems.forEach((item) => item.addEventListener('click', stopSpot));
-    const spotLightbox = document.querySelector('.lightbox');
-    if (spotLightbox) {
-      const closeBtn = spotLightbox.querySelector('.lightbox-close');
-      if (closeBtn) closeBtn.addEventListener('click', startSpot);
-      spotLightbox.addEventListener('click', (e) => {
-        if (e.target === spotLightbox) startSpot();
-      });
-    }
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') startSpot();
-    });
-
-    window.addEventListener('resize', syncSpotHeight);
-    syncSpotHeight();
-    startSpot();
-  }
 
   /* ---------- Grid thumbnail rotation (CMS-set, for sideways photos) ----------
      Mirrors the lightbox's rotation fix: a wrapper reserves the correct

@@ -100,7 +100,6 @@ window.BWJRender = (function () {
   async function renderSite() {
     const site = await fetchJSON('data/site.json');
     const map = {
-      'nav-tagline': site.navTagline,
       'newsletter-heading': site.newsletterHeading,
       'newsletter-blurb': site.newsletterBlurb,
       'footer-tagline': site.footerTagline,
@@ -197,33 +196,26 @@ window.BWJRender = (function () {
       // "Recent Pieces" is fully automatic: it's always the last N items in
       // portfolio.json, reversed so the newest addition shows first. New
       // pieces added through the CMS get appended to the end of the list,
-      // so this needs no manual curation — the spotlight always reflects
-      // whatever is currently newest.
+      // so this needs no manual curation. All shown at once, side by side.
       const count = home.featuredCount || 3;
       const items = portfolio.items.slice(-count).reverse();
-      const slides = items.map((item, i) => {
+      featured.innerHTML = items.map((item) => {
         const img = item.diptych ? item.images[0].src : item.image;
         const alt = item.diptych ? item.images[0].alt : item.alt;
         const rotation = Number(item.diptych ? item.images[0].rotation : item.rotation) || 0;
         const tag = (item.tags && item.tags[0]) || '';
         const meta = tag ? `${escapeHTML(item.materials)} · ${escapeHTML(tag)}` : escapeHTML(item.materials);
         // A [data-lightbox] item, same as the portfolio grid — clicking it
-        // opens the shared lightbox. Only the active slide is visible at a
-        // time (script.js swaps `.is-active` on a 5s timer and pauses it
-        // while the lightbox is open).
+        // opens the shared lightbox.
         return `
-          <div class="spotlight-item${i === 0 ? ' is-active' : ''}" data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${meta}" data-full="${img}" data-rotation="${rotation}">
+          <div class="feature-card" data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${meta}" data-full="${img}" data-rotation="${rotation}">
             <img src="${img}" alt="${escapeHTML(alt)}" loading="lazy"${rotation ? ` style="transform:rotate(${rotation}deg)"` : ''}>
-            <div class="spotlight-caption">
+            <div class="feature-card-label">
               <h4>${escapeHTML(item.title)}</h4>
               <span>${meta}</span>
             </div>
           </div>`;
       }).join('');
-      const dots = items.length > 1
-        ? `<div class="spotlight-dots">${items.map((_, i) => `<button class="dot${i === 0 ? ' is-active' : ''}" aria-label="Show piece ${i + 1}"></button>`).join('')}</div>`
-        : '';
-      featured.innerHTML = slides + dots;
     }
 
   }

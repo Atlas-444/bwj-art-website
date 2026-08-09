@@ -32,17 +32,17 @@
 
 <div class="nav-overlay"></div>
 <nav class="nav-panel">
-  <div class="nav-index">Index / 01—04</div>
   <ul class="nav-links">
-    <li><a href="index.html"><span class="num">01</span>Home</a></li>
-    <li><a href="portfolio.html"><span class="num">02</span>Portfolio</a></li>
-    <li><a href="about.html"><span class="num">03</span>About</a></li>
-    <li><a href="contact.html" class="current"><span class="num">04</span>Contact</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="current">Contact</a></li>
   </ul>
   <div class="nav-panel-footer">
-    <span data-bind="nav-tagline">Danish artist based in Copenhagen, formerly of Pau, France. Working in spray, acrylic, paper, and sculpture.</span>
     <div class="socials">
       <a href="https://instagram.com/willaingdraws" data-bind-href="instagram-url" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+      <a href="contact.html" aria-label="Contact">Contact</a>
+      <a href="#newsletter" aria-label="Newsletter signup">Newsletter</a>
     </div>
   </div>
 </nav>
@@ -122,7 +122,7 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
-    <div class="footer-newsletter fade-in">
+    <div class="footer-newsletter fade-in" id="newsletter">
       <div>
         <h5 data-bind="newsletter-heading">Join the List</h5>
         <p data-bind="newsletter-blurb">New pieces and updates, straight to your inbox. No spam.</p>

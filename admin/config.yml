@@ -195,7 +195,6 @@ collections:
         label: "Site Settings"
         file: "data/site.json"
         fields:
-          - { label: "Nav Panel Tagline", name: "navTagline", widget: "text" }
           - { label: "Newsletter Signup — Heading", name: "newsletterHeading", widget: "string" }
           - { label: "Newsletter Signup — Blurb", name: "newsletterBlurb", widget: "text" }
           - { label: "Footer Tagline", name: "footerTagline", widget: "text" }
