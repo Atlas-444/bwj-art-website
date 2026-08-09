@@ -65,6 +65,28 @@
     </div>
   </section>
 
+  <!-- ============ FEATURED PIECE ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div>
+          <span class="eyebrow">Featured</span>
+          <h2 class="section-title">Where To Start</h2>
+        </div>
+      </div>
+
+      <div class="featured-piece fade-in" data-field="featured-piece">
+        <div class="featured-piece-frame" data-lightbox data-title="Red Strings (III)" data-meta="Yarn, Wire &amp; Cement · 60×80cm · Collection: Life — The thread leaves the page and lands on stone; what holds you together doesn't need to be delicate to still be real." data-full="assets/img/red-strings-3.jpg" data-rotation="0">
+          <img src="assets/img/red-strings-3.jpg" alt="Red Strings (III) — red yarn spiral over a light cement panel" loading="lazy">
+        </div>
+        <div class="featured-piece-caption">
+          <h3>Red Strings (III)</h3>
+          <span>Yarn, Wire &amp; Cement · Life</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FEATURED WORK ============ -->
   <section class="section">
     <div class="container">
@@ -156,6 +178,22 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
+    <div class="footer-newsletter fade-in">
+      <div>
+        <h5 data-bind="newsletter-heading">Join the List</h5>
+        <p data-bind="newsletter-blurb">New pieces and updates, straight to your inbox. No spam.</p>
+      </div>
+      <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="nl-bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p class="hidden-field" style="position:absolute; left:-9999px;">
+          <label>Don't fill this out if you're human: <input name="nl-bot-field"></label>
+        </p>
+        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+        <button type="submit" class="btn btn-solid">Sign Up</button>
+        <span class="newsletter-confirmation">Thanks — you're on the list.</span>
+        <span class="newsletter-error">Something went wrong — please try again.</span>
+      </form>
+    </div>
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo"><span class="dot"></span>BWJ-ART</div>

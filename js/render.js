@@ -25,6 +25,17 @@ window.BWJRender = (function () {
     return (tags || []).map((t) => `<div class="tag">${escapeHTML(t)}</div>`).join('');
   }
 
+  function isSold(tags) {
+    return (tags || []).some((t) => /^sold/i.test(t));
+  }
+
+  /* Price only ever shows on pieces that aren't sold — a sold piece just
+     keeps its "Sold" tag, same as before this field existed. */
+  function priceTagHTML(item) {
+    if (!item.price || isSold(item.tags)) return '';
+    return `<div class="tag tag-price">${escapeHTML(item.price)}</div>`;
+  }
+
   /* Renders a thumbnail <img>, honoring a per-image "rotation" set in the
      CMS (0/90/180/270 clockwise) for photos that were shot sideways.
      180deg needs no layout help (it doesn't change the image's shape), so
@@ -43,9 +54,10 @@ window.BWJRender = (function () {
 
   function portfolioItemHTML(item, catMap) {
     const collection = (catMap && catMap[item.category]) || item.category;
+    const priceSuffix = (item.price && !isSold(item.tags)) ? ` · ${item.price}` : '';
     if (item.diptych) {
       const imgs = item.images.map((im) => {
-        const meta = `${item.materials} · ${item.dimensions} · Collection: ${collection} — ${im.note || item.description}`;
+        const meta = `${item.materials} · ${item.dimensions}${priceSuffix} · Collection: ${collection} — ${im.note || item.description}`;
         const r = Number(im.rotation) || 0;
         return `
           <div data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${escapeHTML(meta)}" data-full="${im.src}" data-rotation="${r}">
@@ -55,15 +67,15 @@ window.BWJRender = (function () {
       return `
         <div class="masonry-item" data-category="${item.category}">
           <div class="diptych-imgs">${imgs}</div>
-          <div class="masonry-caption"><div class="cap-title">${escapeHTML(item.title)}</div><div class="cap-meta">${escapeHTML(item.materials)} · ${escapeHTML(collection)}</div>${tagHTML(item.tags)}</div>
+          <div class="masonry-caption"><div class="cap-title">${escapeHTML(item.title)}</div><div class="cap-meta">${escapeHTML(item.materials)} · ${escapeHTML(collection)}</div>${tagHTML(item.tags)}${priceTagHTML(item)}</div>
         </div>`;
     }
-    const meta = `${item.materials} · ${item.dimensions} · Collection: ${collection} — ${item.description}`;
+    const meta = `${item.materials} · ${item.dimensions}${priceSuffix} · Collection: ${collection} — ${item.description}`;
     const rotation = Number(item.rotation) || 0;
     return `
       <div class="masonry-item" data-category="${item.category}" data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${escapeHTML(meta)}" data-full="${item.image}" data-rotation="${rotation}">
         ${thumbImgHTML(item.image, item.alt, rotation)}
-        <div class="masonry-caption"><div class="cap-title">${escapeHTML(item.title)}</div><div class="cap-meta">${escapeHTML(item.materials)} · ${escapeHTML(collection)}</div>${tagHTML(item.tags)}</div>
+        <div class="masonry-caption"><div class="cap-title">${escapeHTML(item.title)}</div><div class="cap-meta">${escapeHTML(item.materials)} · ${escapeHTML(collection)}</div>${tagHTML(item.tags)}${priceTagHTML(item)}</div>
       </div>`;
   }
 
@@ -89,6 +101,8 @@ window.BWJRender = (function () {
     const site = await fetchJSON('data/site.json');
     const map = {
       'nav-tagline': site.navTagline,
+      'newsletter-heading': site.newsletterHeading,
+      'newsletter-blurb': site.newsletterBlurb,
       'footer-tagline': site.footerTagline,
       'footer-copyright': site.footerCopyright,
       'footer-built-with': site.footerBuiltWith,
@@ -131,7 +145,8 @@ window.BWJRender = (function () {
   async function renderHome() {
     const root = document.getElementById('home-root');
     if (!root) return;
-    const [home, portfolio] = await Promise.all([fetchJSON('data/home.json'), getPortfolio()]);
+    const [home, portfolio, collections] = await Promise.all([fetchJSON('data/home.json'), getPortfolio(), getCollections()]);
+    const catMap = collectionMap(collections);
 
     const heroHeading = root.querySelector('[data-field="hero-heading"]');
     if (heroHeading) {
@@ -154,6 +169,29 @@ window.BWJRender = (function () {
     const stmtQuote = root.querySelector('[data-field="statement-quote"]');
     if (stmtQuote) stmtQuote.textContent = home.statementQuote;
 
+    const featuredPiece = root.querySelector('[data-field="featured-piece"]');
+    if (featuredPiece) {
+      // Whichever piece has "Feature on Homepage?" checked in the CMS wins
+      // (first one, if more than one is checked); if none are flagged,
+      // fall back to the newest piece so the section is never empty.
+      const item = portfolio.items.find((i) => i.isFeatured) || portfolio.items[portfolio.items.length - 1];
+      if (item) {
+        const collection = catMap[item.category] || item.category;
+        const img = item.diptych ? item.images[0].src : item.image;
+        const alt = item.diptych ? item.images[0].alt : item.alt;
+        const rotation = Number(item.diptych ? item.images[0].rotation : item.rotation) || 0;
+        const meta = `${escapeHTML(item.materials)} · ${escapeHTML(item.dimensions)} · Collection: ${escapeHTML(collection)} — ${escapeHTML(item.description)}`;
+        featuredPiece.innerHTML = `
+          <div class="featured-piece-frame" data-lightbox data-title="${escapeHTML(item.title)}" data-meta="${meta}" data-full="${img}" data-rotation="${rotation}">
+            <img src="${img}" alt="${escapeHTML(alt)}" loading="lazy"${rotation ? ` style="transform:rotate(${rotation}deg)"` : ''}>
+          </div>
+          <div class="featured-piece-caption">
+            <h3>${escapeHTML(item.title)}</h3>
+            <span>${escapeHTML(item.materials)} · ${escapeHTML(collection)}</span>
+          </div>`;
+      }
+    }
+
     const featured = root.querySelector('[data-field="featured-work"]');
     if (featured) {
       // "Recent Pieces" is fully automatic: it's always the last N items in
@@ -168,7 +206,7 @@ window.BWJRender = (function () {
         const alt = item.diptych ? item.images[0].alt : item.alt;
         const rotation = Number(item.diptych ? item.images[0].rotation : item.rotation) || 0;
         const tag = (item.tags && item.tags[0]) || '';
-        const meta = `${escapeHTML(item.materials)} · ${escapeHTML(tag)}`;
+        const meta = tag ? `${escapeHTML(item.materials)} · ${escapeHTML(tag)}` : escapeHTML(item.materials);
         // A [data-lightbox] item, same as the portfolio grid — clicking it
         // opens the shared lightbox. Only the active slide is visible at a
         // time (script.js swaps `.is-active` on a 5s timer and pauses it

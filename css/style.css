@@ -561,6 +561,12 @@ body.nav-open { overflow: hidden; }
   border: 1px solid rgba(255,255,255,0.5);
   color: var(--white);
 }
+.tag-price {
+  background: rgba(255,255,255,0.92);
+  color: var(--neutral);
+  border-color: var(--white);
+  font-weight: 700;
+}
 
 /* ==========================================================================
    Exhibits / press
@@ -952,6 +958,39 @@ body.nav-open { overflow: hidden; }
   color: var(--slate);
 }
 
+/* Home "Featured Piece" — a single, non-rotating piece the artist flags
+   as the one visitors should see first (CMS "Feature on Homepage?"),
+   shown full-width right after the hero. */
+.featured-piece {
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: pointer;
+}
+.featured-piece-frame img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  filter: grayscale(15%);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+.featured-piece:hover .featured-piece-frame img { transform: scale(1.03); filter: grayscale(0%); }
+.featured-piece-caption {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.featured-piece-caption h3 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: var(--slate-dark);
+}
+.featured-piece-caption span {
+  font-size: 0.75rem;
+  color: var(--slate);
+}
+
 /* Home "spotlight" — single rotating highlighted image, replacing the old
    3-up feature strip. Only one .spotlight-item is ever visible at a time
    (script.js toggles .is-active on a timer); clicking it opens the shared
@@ -1088,6 +1127,66 @@ footer {
   background: var(--off-white);
 }
 
+.footer-newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--line);
+}
+.footer-newsletter h5 {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.4rem;
+}
+.footer-newsletter p {
+  font-size: 0.85rem;
+  color: var(--neutral);
+  max-width: 40ch;
+}
+.newsletter-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.newsletter-form input[type="email"] {
+  border: none;
+  border-bottom: 1px solid var(--neutral);
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  padding: 0.6rem 0;
+  color: var(--neutral);
+  min-width: 220px;
+}
+.newsletter-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--slate);
+}
+.newsletter-form .btn {
+  padding: 0.7rem 1.25rem;
+  font-size: 0.75rem;
+}
+.newsletter-confirmation,
+.newsletter-error {
+  flex-basis: 100%;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.newsletter-confirmation.is-visible,
+.newsletter-error.is-visible {
+  opacity: 1;
+}
+.newsletter-confirmation { color: var(--slate); }
+.newsletter-error { color: #b33; }
+
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -1199,6 +1298,7 @@ footer {
   .feature-card:hover img { transform: none; filter: grayscale(15%); }
   .feature-card-label { position: static; }
   .spotlight-item:hover img { transform: none; filter: grayscale(15%); }
+  .featured-piece:hover .featured-piece-frame img { transform: none; filter: grayscale(15%); }
   .btn:hover { background: none; color: var(--neutral); }
   .btn-solid:hover { background: var(--neutral); color: var(--white); }
   .cta-band .btn:hover { background: none; color: var(--white); }
@@ -1239,6 +1339,8 @@ footer {
   .feature-strip { grid-template-columns: 1fr; }
   .process-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+  .footer-newsletter { flex-direction: column; align-items: stretch; }
+  .newsletter-form input[type="email"] { min-width: 0; flex: 1; }
   .nav-panel { width: 100%; padding: var(--space-lg) var(--space-md); }
   .nav-links li a { font-size: 1.6rem; }
   .hero-meta { gap: var(--space-md); }
@@ -1259,6 +1361,7 @@ footer {
   .spotlight-item { width: 270px; }
   .spotlight-item img { height: 300px; }
   .spotlight-dots { bottom: calc(1rem + 40px); }
+  .featured-piece-frame img { height: 320px; }
   .hero-meta { flex-direction: column; gap: 1.25rem; }
   .hero { padding-bottom: calc(var(--space-xl) + 2.5rem); }
 

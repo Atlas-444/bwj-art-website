@@ -460,6 +460,43 @@ window.initSiteInteractions = function () {
     });
   }
 
+  /* ---------- Newsletter signup (footer, every page — submits to Netlify Forms) ---------- */
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const confirmation = form.querySelector('.newsletter-confirmation');
+      const errorMsg = form.querySelector('.newsletter-error');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const data = new URLSearchParams(new FormData(form)).toString();
+
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(window.location.pathname || '/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Newsletter submission failed: ' + res.status + ' ' + res.statusText);
+          form.reset();
+          if (confirmation) {
+            confirmation.classList.add('is-visible');
+            setTimeout(() => confirmation.classList.remove('is-visible'), 5000);
+          }
+        })
+        .catch((err) => {
+          console.error('[BWJ] newsletter submission failed', err);
+          if (errorMsg) {
+            errorMsg.classList.add('is-visible');
+            setTimeout(() => errorMsg.classList.remove('is-visible'), 6000);
+          }
+        })
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
+        });
+    });
+  });
+
 };
 
 /* render.js calls window.initSiteInteractions() once dynamic content has been

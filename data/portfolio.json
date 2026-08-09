@@ -22,7 +22,9 @@
           "note": "Second panel of the same piece, inverted in tone.",
           "rotation": 0
         }
-      ]
+      ],
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "forest-of-life",
@@ -34,7 +36,9 @@
       "tags": [],
       "image": "assets/img/forest-of-life.jpg",
       "alt": "The Forest of Life — textured acrylic painting of bare trees in fog",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "its-yours",
@@ -46,7 +50,9 @@
       "tags": [],
       "image": "assets/img/its-yours.jpg",
       "alt": "IT'S Yours — a heart painted in black over a red canvas",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "circle",
@@ -60,7 +66,9 @@
       ],
       "image": "assets/img/circle-of-life.jpg",
       "alt": "Circle — wire butterfly and ink skull drawing on canvas",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "red-strings-1",
@@ -72,7 +80,9 @@
       "tags": [],
       "image": "assets/img/red-strings-1.jpg",
       "alt": "Red Strings (I) — red thread drawing over black and white sketchbook page",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "red-strings-2",
@@ -84,7 +94,9 @@
       "tags": [],
       "image": "assets/img/red-strings-2.jpg",
       "alt": "Red Strings (II) — red thread drawing on white sketchbook page",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "hope",
@@ -98,7 +110,9 @@
       ],
       "image": "assets/img/hope.jpg",
       "alt": "Ho9e — spray paint hand and butterfly on teal canvas",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "flutter",
@@ -110,7 +124,9 @@
       "tags": [],
       "image": "assets/img/flutter.jpg",
       "alt": "Flutter — black spray paint butterfly on yellow canvas",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "fly-high",
@@ -122,7 +138,9 @@
       "tags": [],
       "image": "assets/img/fly-high.jpg",
       "alt": "FLY H-GH — blue and purple butterfly painting",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "i-wanna-live",
@@ -134,7 +152,9 @@
       "tags": [],
       "image": "assets/img/i-wanna-live.jpg",
       "alt": "I Wanna Live Not Just Survive — stenciled text and angel wing painting",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "splinters-beams",
@@ -146,7 +166,9 @@
       "tags": [],
       "image": "assets/img/splinters-beams.jpg",
       "alt": "Splinters & Beams — large glowing hand pointing, spray paint on grey panel",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "parasitic-rose",
@@ -160,7 +182,9 @@
       ],
       "image": "assets/img/parasitic-rose.jpg",
       "alt": "Parasitic Rose — graphite drawing of a rose growing from an anatomical heart, burnt paper edges",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "self-portrait",
@@ -174,7 +198,9 @@
       ],
       "image": "assets/img/self-portrait-cut.jpg",
       "alt": "Self Portrait — black and white paper-cut portrait",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "the-pull",
@@ -188,7 +214,9 @@
       ],
       "image": "assets/img/rose-pull.jpg",
       "alt": "The Pull — rose and hand illustration on a blue circle over black canvas",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "expression",
@@ -200,7 +228,9 @@
       "tags": [],
       "image": "assets/img/hand-wire-sculpture.jpg",
       "alt": "Expression — hand sculpture made of woven black wire",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "lies",
@@ -214,7 +244,9 @@
       ],
       "image": "assets/img/lies.jpg",
       "alt": "Lies — stenciled figure with an X above the head on a blue background",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "but-can-it-fly",
@@ -226,7 +258,9 @@
       "tags": [],
       "image": "assets/img/but-can-it-fly.jpg",
       "alt": "But Can It Fly? — blue butterfly painting on orange-bordered canvas",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "tokyo-study",
@@ -240,7 +274,9 @@
       ],
       "image": "assets/img/power-lines.jpg",
       "alt": "Tokyo Study — power lines and utility pole painted on purple canvas",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "rough-edges",
@@ -255,7 +291,9 @@
       ],
       "image": "assets/img/rough-edges.jpg",
       "alt": "Rough Edges — line drawing of eyes and rose petals in coloured pencil",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     },
     {
       "id": "red-strings-3",
@@ -267,7 +305,9 @@
       "tags": [],
       "image": "assets/img/red-strings-3.jpg",
       "alt": "Red Strings (III) — red yarn spiral over a light cement panel",
-      "rotation": 0
+      "rotation": 0,
+      "price": "",
+      "isFeatured": false
     }
   ]
 }

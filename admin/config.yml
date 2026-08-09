@@ -36,6 +36,17 @@ collections:
                 name: "tags"
                 widget: "list"
                 field: { label: "Tag", name: "tag", widget: "string" }
+              - label: "Price"
+                name: "price"
+                widget: "string"
+                required: false
+                hint: "e.g. \"$450\" or \"Price on Inquiry\". Leave blank to hide. Automatically hidden on pieces tagged 'Sold', regardless of what's entered here."
+              - label: "Feature on Homepage?"
+                name: "isFeatured"
+                widget: "boolean"
+                default: false
+                required: false
+                hint: "Shows this piece in the dedicated Featured Work section at the top of the homepage. If more than one piece is checked, the first one (in this list's order) wins. If none are checked, the newest piece is shown instead."
               - { label: "Two-image diptych?", name: "diptych", widget: "boolean", default: false, required: false }
               - { label: "Image (leave blank if diptych)", name: "image", widget: "image", required: false, choose_url: false }
               - { label: "Image Alt Text", name: "alt", widget: "string", required: false }
@@ -185,6 +196,8 @@ collections:
         file: "data/site.json"
         fields:
           - { label: "Nav Panel Tagline", name: "navTagline", widget: "text" }
+          - { label: "Newsletter Signup — Heading", name: "newsletterHeading", widget: "string" }
+          - { label: "Newsletter Signup — Blurb", name: "newsletterBlurb", widget: "text" }
           - { label: "Footer Tagline", name: "footerTagline", widget: "text" }
           - { label: "Footer Copyright", name: "footerCopyright", widget: "string" }
           - { label: "Footer 'Built With' Line", name: "footerBuiltWith", widget: "string" }
