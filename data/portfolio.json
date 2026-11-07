@@ -310,6 +310,31 @@
       "description": "The thread leaves the page and lands on stone; what holds you together doesn't need to be delicate to still be real.",
       "category": "life",
       "rotation": 0
+    },
+    {
+      "price": "9000 dkk",
+      "materials": "Acrylic on canvas",
+      "dimensions": "60×80cm",
+      "diptych": false,
+      "title": "Take It",
+      "isFeatured": true,
+      "id": "take-it",
+      "image": "assets/img/img_6653.jpeg",
+      "description": "Sometimes offerings are rejected",
+      "category": "life",
+      "rotation": 0
+    },
+    {
+      "price": "9000 dkk",
+      "materials": "Spray paint, nail polish, Gesso, modelling paste on on canvas",
+      "dimensions": "60×80 cm",
+      "diptych": false,
+      "title": "Nails",
+      "isFeatured": true,
+      "id": "nails",
+      "description": "Going against the grain and exploring self-expression.",
+      "category": "life",
+      "rotation": 0
     }
   ]
 }
