@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "price": "3000dkk",
+      "price": "4000dkk",
       "materials": "Spray-Paint on Canvas (2 Panels)",
       "dimensions": "20.5×20.5×3.6cm each",
       "diptych": true,
@@ -41,7 +41,7 @@
       "rotation": 0
     },
     {
-      "price": "5000dkk",
+      "price": "4000dkk",
       "alt": "IT'S Yours — a heart painted in black over a red canvas",
       "materials": "Acrylic + Spray",
       "dimensions": "30×40×3.8cm",
@@ -129,35 +129,7 @@
       "rotation": 0
     },
     {
-      "price": "1000dkk",
-      "alt": "FLY H-GH — blue and purple butterfly painting",
-      "materials": "Acrylic + Posca",
-      "dimensions": "20×20×3.6cm",
-      "title": "FLY H–GH",
-      "isFeatured": false,
-      "tags": [],
-      "id": "fly-high",
-      "image": "assets/img/fly-high.jpg",
-      "description": "Sometimes you need help to leave the ground. Doesn't make you any less beautiful.",
-      "category": "hictb",
-      "rotation": 0
-    },
-    {
-      "price": "5000dkk",
-      "alt": "I Wanna Live Not Just Survive — stenciled text and angel wing painting",
-      "materials": "Acrylic on Canvas",
-      "dimensions": "90.5×65×1cm",
-      "title": "I Wanna Live Not Just Survive",
-      "isFeatured": false,
-      "tags": [],
-      "id": "i-wanna-live",
-      "image": "assets/img/i-wanna-live.jpg",
-      "description": "The need to live, to move on, not just be stuck in routines, and especially not get left behind by the bus of life.",
-      "category": "life",
-      "rotation": 0
-    },
-    {
-      "price": "5000dkk",
+      "price": "10000dkk",
       "alt": "Splinters & Beams — large glowing hand pointing, spray paint on grey panel",
       "materials": "Acrylic + Spray",
       "dimensions": "107×75×0.5cm",
@@ -168,22 +140,6 @@
       "image": "assets/img/splinters-beams.jpg",
       "description": "We spend so much time judging others, often making larger mistakes ourselves. We fail to see the beam in our own eye.",
       "category": "life",
-      "rotation": 0
-    },
-    {
-      "price": "",
-      "alt": "Parasitic Rose — graphite drawing of a rose growing from an anatomical heart, burnt paper edges",
-      "materials": "Pencil on Paper",
-      "dimensions": "42×29.7cm",
-      "title": "Parasitic Rose",
-      "isFeatured": false,
-      "tags": [
-        "Sold"
-      ],
-      "id": "parasitic-rose",
-      "image": "assets/img/parasitic-rose.jpg",
-      "description": "A rose leaching off of a heart. Someone came into my life, grew, and left.",
-      "category": "hictb",
       "rotation": 0
     },
     {
@@ -233,7 +189,7 @@
       "rotation": 0
     },
     {
-      "price": "3000dkk",
+      "price": "1000dkk",
       "alt": "Lies — stenciled figure with an X above the head on a blue background",
       "materials": "Spray + Posca",
       "dimensions": "29.7×42cm",
@@ -246,22 +202,6 @@
       "image": "assets/img/lies.jpg",
       "description": "What is the perfect crime? A lie — you steal someone's right to the truth, and often get away with it. Published in Ojo Vulgar 'El Crimen Perfecto.'",
       "category": "life",
-      "rotation": 0
-    },
-    {
-      "price": "",
-      "alt": "But Can It Fly? — blue butterfly painting on orange-bordered canvas",
-      "materials": "Acrylic + Posca",
-      "dimensions": "20.5×20.5×3.6cm",
-      "title": "But Can It Flλ?",
-      "isFeatured": false,
-      "tags": [
-        "Sold"
-      ],
-      "id": "but-can-it-fly",
-      "image": "assets/img/but-can-it-fly.jpg",
-      "description": "Inspired by 'Isn't It Time To Let It Fly?' by Bjørn Agertved.",
-      "category": "hictb",
       "rotation": 0
     },
     {
@@ -298,7 +238,7 @@
       "rotation": 0
     },
     {
-      "price": "9000 dkk",
+      "price": "10000 dkk",
       "materials": "Acrylic on canvas",
       "dimensions": "60×80cm",
       "diptych": false,
@@ -311,7 +251,7 @@
       "rotation": 0
     },
     {
-      "price": "9000 dkk",
+      "price": "10000 dkk",
       "materials": "Spray paint, nail polish, Gesso, modelling paste on on canvas",
       "dimensions": "60×80 cm",
       "diptych": false,
